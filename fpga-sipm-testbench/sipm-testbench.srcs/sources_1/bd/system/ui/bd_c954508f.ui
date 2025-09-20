@@ -1,0 +1,88 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.04752",
+   "Default View_TopLeft":"1000,-98",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0 TLS
+#  -string -flagsOSRD
+preplace port Vp_Vn -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
+preplace port Vaux0 -pg 1 -lvl 0 -x 0 -y 20 -defaultsOSRD
+preplace port Vaux1 -pg 1 -lvl 0 -x 0 -y 50 -defaultsOSRD
+preplace port Vaux9 -pg 1 -lvl 0 -x 0 -y 110 -defaultsOSRD
+preplace port Vaux8 -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
+preplace port DDR -pg 1 -lvl 9 -x 2850 -y 60 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 9 -x 2850 -y 90 -defaultsOSRD
+preplace port port-id_adc_clk_p_i -pg 1 -lvl 0 -x 0 -y 650 -defaultsOSRD
+preplace port port-id_adc_clk_n_i -pg 1 -lvl 0 -x 0 -y 620 -defaultsOSRD
+preplace port port-id_adc_enc_p_o -pg 1 -lvl 9 -x 2850 -y 270 -defaultsOSRD
+preplace port port-id_adc_enc_n_o -pg 1 -lvl 9 -x 2850 -y 240 -defaultsOSRD
+preplace port port-id_adc_csn_o -pg 1 -lvl 9 -x 2850 -y 210 -defaultsOSRD
+preplace port port-id_dac_clk_o -pg 1 -lvl 9 -x 2850 -y 510 -defaultsOSRD
+preplace port port-id_dac_rst_o -pg 1 -lvl 9 -x 2850 -y 540 -defaultsOSRD
+preplace port port-id_dac_sel_o -pg 1 -lvl 9 -x 2850 -y 570 -defaultsOSRD
+preplace port port-id_dac_wrt_o -pg 1 -lvl 9 -x 2850 -y 600 -defaultsOSRD
+preplace portBus adc_dat_a_i -pg 1 -lvl 0 -x 0 -y 270 -defaultsOSRD
+preplace portBus adc_dat_b_i -pg 1 -lvl 0 -x 0 -y 300 -defaultsOSRD
+preplace portBus dac_dat_o -pg 1 -lvl 9 -x 2850 -y 630 -defaultsOSRD
+preplace portBus dac_pwm_o -pg 1 -lvl 9 -x 2850 -y 20 -defaultsOSRD
+preplace portBus exp_n_tri_io -pg 1 -lvl 9 -x 2850 -y 120 -defaultsOSRD
+preplace portBus led_o -pg 1 -lvl 9 -x 2850 -y 180 -defaultsOSRD
+preplace portBus exp_p_tri_io -pg 1 -lvl 9 -x 2850 -y 150 -defaultsOSRD
+preplace inst pll_0 -pg 1 -lvl 1 -x 130 -y 630 -defaultsOSRD
+preplace inst ps_0 -pg 1 -lvl 8 -x 2600 -y 100 -defaultsOSRD
+preplace inst rst_0 -pg 1 -lvl 2 -x 430 -y 450 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 3 -x 770 -y 370 -defaultsOSRD
+preplace inst ilconstant_1 -pg 1 -lvl 1 -x 130 -y 430 -defaultsOSRD
+preplace inst debug_bridge_0 -pg 1 -lvl 4 -x 1080 -y 470 -defaultsOSRD
+preplace inst axis_dac_0 -pg 1 -lvl 8 -x 2600 -y 570 -defaultsOSRD
+preplace inst signal_generator_0 -pg 1 -lvl 4 -x 1080 -y 280 -defaultsOSRD
+preplace inst axi_bram_ctrl_0 -pg 1 -lvl 4 -x 1080 -y 110 -defaultsOSRD
+preplace inst blk_mem_gen_0 -pg 1 -lvl 6 -x 1833 -y 270 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 6 -x 1833 -y 430 -defaultsOSRD
+preplace inst ilconstant_0 -pg 1 -lvl 7 -x 2200 -y 80 -defaultsOSRD
+preplace inst axis_adc_0 -pg 1 -lvl 2 -x 430 -y 290 -defaultsOSRD
+preplace inst adc_sampler_0 -pg 1 -lvl 5 -x 1446 -y 470 -defaultsOSRD
+preplace inst smartconnect_0 -pg 1 -lvl 7 -x 2200 -y 420 -defaultsOSRD
+preplace inst ila_0 -pg 1 -lvl 5 -x 1446 -y 310 -defaultsOSRD
+preplace inst bram_byte2word_0 -pg 1 -lvl 5 -x 1446 -y 120 -defaultsOSRD
+preplace inst ilconstant_2 -pg 1 -lvl 7 -x 2200 -y 560 -defaultsOSRD
+preplace netloc adc_clk_n_i_1 1 0 1 20J 620n
+preplace netloc adc_clk_p_i_1 1 0 1 NJ 650
+preplace netloc adc_dat_a_i_1 1 0 2 NJ 270 NJ
+preplace netloc adc_dat_b_i_1 1 0 2 20J 290 NJ
+preplace netloc axis_dac_0_dac_cl 1 8 1 2830J 510n
+preplace netloc axis_dac_0_dac_dat 1 8 1 2830J 610n
+preplace netloc axis_dac_0_dac_rst 1 8 1 2830J 540n
+preplace netloc axis_dac_0_dac_sel 1 8 1 NJ 570
+preplace netloc axis_dac_0_dac_wrt 1 8 1 2830J 590n
+preplace netloc ilconstant_0_dout 1 7 1 2360 80n
+preplace netloc ilconstant_1_dout 1 1 1 NJ 430
+preplace netloc pll_0_clk_out1 1 1 7 240 210 610 210 920 360 1266 560 1653 530 2050 500 2360
+preplace netloc pll_0_clk_out2 1 1 7 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 N
+preplace netloc pll_0_clk_out3 1 1 7 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 N
+preplace netloc pll_0_locked 1 1 7 250 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 N
+preplace netloc rst_0_peripheral_aresetn 1 2 5 620 260 930 550 1276 570 1663 540 2060
+preplace netloc signal_generator_0_sampling 1 4 1 1230 300n
+preplace netloc ilconstant_2_dout 1 7 1 2370 500n
+preplace netloc adc_sampler_0_m_axis 1 5 1 1620 410n
+preplace netloc axi_dma_0_M_AXI_S2MM 1 6 1 2010 400n
+preplace netloc axi_smc_M00_AXI 1 3 1 910 90n
+preplace netloc axi_smc_M01_AXI 1 3 1 940 260n
+preplace netloc axi_smc_M02_AXI 1 3 1 910 360n
+preplace netloc axi_smc_M03_AXI 1 3 3 NJ 380 NJ 380 1640
+preplace netloc ps_0_DDR 1 8 1 NJ 60
+preplace netloc ps_0_FIXED_IO 1 8 1 2830J 80n
+preplace netloc ps_0_M_AXI_GP0 1 2 7 630 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 2830
+preplace netloc signal_generator_0_BRAM_PORT 1 4 2 1230J 240 1620
+preplace netloc signal_generator_0_m_axis 1 4 1 1256 280n
+preplace netloc smartconnect_0_M00_AXI 1 7 1 2340 60n
+preplace netloc axi_bram_ctrl_0_BRAM_PORTA 1 4 1 1230J 110n
+preplace netloc bram_byte2word_0_BRAM_PORT 1 5 1 1640 120n
+levelinfo -pg 1 0 130 430 770 1080 1446 1833 2200 2600 2850
+pagesize -pg 1 -db -bbox -sgen -170 0 3040 810
+"
+}
+{
+   "da_axi4_cnt":"15",
+   "da_clkrst_cnt":"2"
+}
