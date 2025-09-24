@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x71D7FB5D26641C1C",
+      "boundary_crc": "0x71D7FB5D7965A151",
       "design_src": "SBD",
       "device": "xc7z010clg400-1",
       "name": "bd_919a",
@@ -111,7 +111,7 @@
             "value_src": "default"
           },
           "MAX_BURST_LENGTH": {
-            "value": "16",
+            "value": "32",
             "value_src": "user_prop"
           },
           "NUM_READ_OUTSTANDING": {
@@ -252,7 +252,7 @@
             "value_src": "default"
           },
           "MAX_BURST_LENGTH": {
-            "value": "8"
+            "value": "16"
           },
           "NUM_READ_OUTSTANDING": {
             "value": "2"
@@ -508,7 +508,7 @@
                 "value": "2"
               },
               "NUM_SEG": {
-                "value": "2"
+                "value": "1"
               },
               "NUM_WRITE_OUTSTANDING": {
                 "value": "16"
@@ -538,27 +538,6 @@
                 "value": "1"
               },
               "SEG000_SUPPORTS_WRITE": {
-                "value": "1"
-              },
-              "SEG001_BASE_ADDR": {
-                "value": "0x0000000040000000"
-              },
-              "SEG001_SECURE_READ": {
-                "value": "0"
-              },
-              "SEG001_SECURE_WRITE": {
-                "value": "0"
-              },
-              "SEG001_SEP_ROUTE": {
-                "value": "0b0000000000000000000000000000000000000000000000000000000000000000"
-              },
-              "SEG001_SIZE": {
-                "value": "30"
-              },
-              "SEG001_SUPPORTS_READ": {
-                "value": "1"
-              },
-              "SEG001_SUPPORTS_WRITE": {
                 "value": "1"
               },
               "SUPPORTS_NARROW": {
@@ -656,7 +635,7 @@
                 "value": "0"
               },
               "SUPPORTS_WRITE_DEADLOCK": {
-                "value": "1"
+                "value": "0"
               },
               "S_ID_WIDTH": {
                 "value": "0"
@@ -744,7 +723,7 @@
                 "value": "1"
               },
               "NUM_SEG": {
-                "value": "2"
+                "value": "1"
               },
               "NUM_WRITE_OUTSTANDING": {
                 "value": "16"
@@ -765,15 +744,6 @@
                 "value": "64"
               },
               "SEP000_WDATA_WIDTH": {
-                "value": "64"
-              },
-              "SEP001_PROTOCOL": {
-                "value": "AXI3"
-              },
-              "SEP001_RDATA_WIDTH": {
-                "value": "64"
-              },
-              "SEP001_WDATA_WIDTH": {
                 "value": "64"
               },
               "SPLIT_WRAP_NARROW": {
@@ -1763,7 +1733,7 @@
                 "value": "0"
               },
               "M_MAX_BURST_LENGTH": {
-                "value": "8"
+                "value": "16"
               },
               "M_PROTOCOL": {
                 "value": "AXI3"
