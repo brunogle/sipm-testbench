@@ -2,8 +2,8 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-//Date        : Tue Sep 23 01:24:49 2025
-//Host        : bruno-desktop-fedora running 64-bit Fedora Linux 42 (Workstation Edition)
+//Date        : Mon Oct 20 17:10:14 2025
+//Host        : bruno-latitude-fedora running 64-bit Fedora Linux 42 (KDE Plasma Desktop Edition)
 //Command     : generate_target system_wrapper.bd
 //Design      : system_wrapper
 //Purpose     : IP block netlist
@@ -11,7 +11,10 @@
 `timescale 1 ps / 1 ps
 
 module system_wrapper
-   (DDR_addr,
+   (BOOST_SHDN,
+    DAC_CLR,
+    DAC_SYNC,
+    DDR_addr,
     DDR_ba,
     DDR_cas_n,
     DDR_ck_n,
@@ -26,12 +29,16 @@ module system_wrapper
     DDR_ras_n,
     DDR_reset_n,
     DDR_we_n,
+    DIN,
+    DOUT,
     FIXED_IO_ddr_vrn,
     FIXED_IO_ddr_vrp,
     FIXED_IO_mio,
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
+    SCALE,
+    SCLK,
     adc_clk_n_i,
     adc_clk_p_i,
     adc_csn_o,
@@ -45,9 +52,10 @@ module system_wrapper
     dac_rst_o,
     dac_sel_o,
     dac_wrt_o,
-    exp_n_tri_io,
-    exp_p_tri_io,
     led_o);
+  output [0:0]BOOST_SHDN;
+  output [0:0]DAC_CLR;
+  output [0:0]DAC_SYNC;
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -63,12 +71,16 @@ module system_wrapper
   inout DDR_ras_n;
   inout DDR_reset_n;
   inout DDR_we_n;
+  output DIN;
+  input DOUT;
   inout FIXED_IO_ddr_vrn;
   inout FIXED_IO_ddr_vrp;
   inout [53:0]FIXED_IO_mio;
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
+  output [0:0]SCALE;
+  output SCLK;
   input adc_clk_n_i;
   input adc_clk_p_i;
   output adc_csn_o;
@@ -82,10 +94,11 @@ module system_wrapper
   output dac_rst_o;
   output dac_sel_o;
   output dac_wrt_o;
-  inout [7:0]exp_n_tri_io;
-  output [7:0]exp_p_tri_io;
-  output [7:0]led_o;
+  output [0:0]led_o;
 
+  wire [0:0]BOOST_SHDN;
+  wire [0:0]DAC_CLR;
+  wire [0:0]DAC_SYNC;
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
   wire DDR_cas_n;
@@ -101,12 +114,16 @@ module system_wrapper
   wire DDR_ras_n;
   wire DDR_reset_n;
   wire DDR_we_n;
+  wire DIN;
+  wire DOUT;
   wire FIXED_IO_ddr_vrn;
   wire FIXED_IO_ddr_vrp;
   wire [53:0]FIXED_IO_mio;
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
+  wire [0:0]SCALE;
+  wire SCLK;
   wire adc_clk_n_i;
   wire adc_clk_p_i;
   wire adc_csn_o;
@@ -120,12 +137,13 @@ module system_wrapper
   wire dac_rst_o;
   wire dac_sel_o;
   wire dac_wrt_o;
-  wire [7:0]exp_n_tri_io;
-  wire [7:0]exp_p_tri_io;
-  wire [7:0]led_o;
+  wire [0:0]led_o;
 
   system system_i
-       (.DDR_addr(DDR_addr),
+       (.BOOST_SHDN(BOOST_SHDN),
+        .DAC_CLR(DAC_CLR),
+        .DAC_SYNC(DAC_SYNC),
+        .DDR_addr(DDR_addr),
         .DDR_ba(DDR_ba),
         .DDR_cas_n(DDR_cas_n),
         .DDR_ck_n(DDR_ck_n),
@@ -140,12 +158,16 @@ module system_wrapper
         .DDR_ras_n(DDR_ras_n),
         .DDR_reset_n(DDR_reset_n),
         .DDR_we_n(DDR_we_n),
+        .DIN(DIN),
+        .DOUT(DOUT),
         .FIXED_IO_ddr_vrn(FIXED_IO_ddr_vrn),
         .FIXED_IO_ddr_vrp(FIXED_IO_ddr_vrp),
         .FIXED_IO_mio(FIXED_IO_mio),
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
+        .SCALE(SCALE),
+        .SCLK(SCLK),
         .adc_clk_n_i(adc_clk_n_i),
         .adc_clk_p_i(adc_clk_p_i),
         .adc_csn_o(adc_csn_o),
@@ -159,7 +181,5 @@ module system_wrapper
         .dac_rst_o(dac_rst_o),
         .dac_sel_o(dac_sel_o),
         .dac_wrt_o(dac_wrt_o),
-        .exp_n_tri_io(exp_n_tri_io),
-        .exp_p_tri_io(exp_p_tri_io),
         .led_o(led_o));
 endmodule
