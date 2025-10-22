@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x25694C23906CB5A9",
+      "boundary_crc": "0x44D43149A1DEF4B3",
       "device": "xc7z010clg400-1",
       "gen_directory": "../../../../sipm-testbench.gen/sources_1/bd/system",
       "name": "system",
@@ -22,8 +22,10 @@
       "axi_smc": "",
       "axi_quad_spi_0": "",
       "ilslice_0": "",
-      "ilconstant_4": "",
-      "system_ila_0": ""
+      "system_ila_0": "",
+      "ilslice_1": "",
+      "ilslice_2": "",
+      "ilslice_3": ""
     },
     "interface_ports": {
       "Vp_Vn": {
@@ -344,6 +346,10 @@
           "POLARITY": {
             "value": "ACTIVE_LOW",
             "value_src": "default"
+          },
+          "PortWidth": {
+            "value": "1",
+            "value_src": "user_prop"
           }
         }
       },
@@ -380,6 +386,17 @@
           "LAYERED_METADATA": {
             "value": "undef",
             "value_src": "default"
+          }
+        }
+      },
+      "HV_ON_LED": {
+        "direction": "O",
+        "left": "0",
+        "right": "0",
+        "parameters": {
+          "PortWidth": {
+            "value": "1",
+            "value_src": "user_prop"
           }
         }
       }
@@ -1740,7 +1757,7 @@
             "value": "1"
           },
           "C_GPIO_WIDTH": {
-            "value": "1"
+            "value": "3"
           }
         }
       },
@@ -1778,6 +1795,10 @@
               "M02_AXI"
             ],
             "bd_attributes": {
+              "BRIDGES": {
+                "value": "M00_AXI:M01_AXI:M02_AXI",
+                "value_src": "auto"
+              },
               "TYPE": {
                 "value": "interior",
                 "value_src": "default"
@@ -1896,6 +1917,9 @@
           "C_USE_STARTUP": {
             "value": "0"
           },
+          "FIFO_INCLUDED": {
+            "value": "0"
+          },
           "Master_mode": {
             "value": "1"
           },
@@ -1911,9 +1935,6 @@
             "value": "2"
           }
         }
-      },
-      "ilconstant_4": {
-        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0"
       },
       "system_ila_0": {
         "vlnv": "xilinx.com:ip:system_ila:1.1",
@@ -1933,6 +1954,42 @@
             "monitor_type": "SlaveType",
             "vlnv_bus_definition": "xilinx.com:interface:spi:1.0",
             "vlnv": "xilinx.com:interface:spi_rtl:1.0"
+          }
+        }
+      },
+      "ilslice_1": {
+        "vlnv": "xilinx.com:inline_hdl:ilslice:1.0",
+        "parameters": {
+          "DIN_WIDTH": {
+            "value": "3"
+          }
+        }
+      },
+      "ilslice_2": {
+        "vlnv": "xilinx.com:inline_hdl:ilslice:1.0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "2"
+          },
+          "DIN_TO": {
+            "value": "2"
+          },
+          "DIN_WIDTH": {
+            "value": "3"
+          }
+        }
+      },
+      "ilslice_3": {
+        "vlnv": "xilinx.com:inline_hdl:ilslice:1.0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "1"
+          },
+          "DIN_TO": {
+            "value": "1"
+          },
+          "DIN_WIDTH": {
+            "value": "3"
           }
         }
       }
@@ -1990,6 +2047,12 @@
       }
     },
     "nets": {
+      "DOUT_1": {
+        "ports": [
+          "DOUT",
+          "axi_quad_spi_0/io0_i"
+        ]
+      },
       "adc_clk_n_i_1": {
         "ports": [
           "adc_clk_n_i",
@@ -2017,7 +2080,9 @@
       "axi_gpio_0_gpio_io_o": {
         "ports": [
           "axi_gpio_0/gpio_io_o",
-          "DAC_CLR"
+          "ilslice_1/Din",
+          "ilslice_2/Din",
+          "ilslice_3/Din"
         ]
       },
       "axi_quad_spi_0_io0_o": {
@@ -2051,16 +2116,29 @@
           "rst_0/ext_reset_in"
         ]
       },
-      "ilconstant_4_dout": {
-        "ports": [
-          "ilconstant_4/dout",
-          "BOOST_SHDN"
-        ]
-      },
       "ilslice_0_Dout": {
         "ports": [
           "ilslice_0/Dout",
           "DAC_SYNC"
+        ]
+      },
+      "ilslice_1_Dout": {
+        "ports": [
+          "ilslice_1/Dout",
+          "HV_ON_LED",
+          "BOOST_SHDN"
+        ]
+      },
+      "ilslice_2_Dout": {
+        "ports": [
+          "ilslice_2/Dout",
+          "SCALE"
+        ]
+      },
+      "ilslice_3_Dout": {
+        "ports": [
+          "ilslice_3/Dout",
+          "DAC_CLR"
         ]
       },
       "pll_0_clk_out1": {
@@ -2092,6 +2170,11 @@
           "axi_smc/aresetn",
           "axi_quad_spi_0/s_axi_aresetn"
         ]
+      }
+    },
+    "comments": {
+      "/": {
+        "comment_0": "d0: BOOST_SDN/HV_ON_LED\nd1: DAC_CLR\nd2: SCALE"
       }
     },
     "addressing": {

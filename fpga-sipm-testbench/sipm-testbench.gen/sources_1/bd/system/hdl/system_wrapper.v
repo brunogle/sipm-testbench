@@ -2,8 +2,8 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-//Date        : Mon Oct 20 17:10:14 2025
-//Host        : bruno-latitude-fedora running 64-bit Fedora Linux 42 (KDE Plasma Desktop Edition)
+//Date        : Wed Oct 22 03:05:25 2025
+//Host        : bruno-desktop-fedora running 64-bit Fedora Linux 42 (Workstation Edition)
 //Command     : generate_target system_wrapper.bd
 //Design      : system_wrapper
 //Purpose     : IP block netlist
@@ -37,6 +37,7 @@ module system_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
+    HV_ON_LED,
     SCALE,
     SCLK,
     adc_clk_n_i,
@@ -79,6 +80,7 @@ module system_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
+  output [0:0]HV_ON_LED;
   output [0:0]SCALE;
   output SCLK;
   input adc_clk_n_i;
@@ -122,6 +124,7 @@ module system_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
+  wire [0:0]HV_ON_LED;
   wire [0:0]SCALE;
   wire SCLK;
   wire adc_clk_n_i;
@@ -166,6 +169,7 @@ module system_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
+        .HV_ON_LED(HV_ON_LED),
         .SCALE(SCALE),
         .SCLK(SCLK),
         .adc_clk_n_i(adc_clk_n_i),

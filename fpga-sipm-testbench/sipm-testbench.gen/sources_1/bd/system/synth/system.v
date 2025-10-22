@@ -2,15 +2,18 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-//Date        : Mon Oct 20 17:10:14 2025
-//Host        : bruno-latitude-fedora running 64-bit Fedora Linux 42 (KDE Plasma Desktop Edition)
+//Date        : Wed Oct 22 03:05:25 2025
+//Host        : bruno-desktop-fedora running 64-bit Fedora Linux 42 (Workstation Edition)
 //Command     : generate_target system.bd
 //Design      : system
 //Purpose     : IP block netlist
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=13,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=25,da_board_cnt=1,da_clkrst_cnt=2,synth_mode=None}" *) (* HW_HANDOFF = "system.hwdef" *) 
+/* d0: BOOST_SDN/HV_ON_LED
+d1: DAC_CLR
+d2: SCALE */
+(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=15,numReposBlks=15,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=25,da_board_cnt=1,da_clkrst_cnt=2,synth_mode=None}" *) (* HW_HANDOFF = "system.hwdef" *) 
 module system
    (BOOST_SHDN,
     DAC_CLR,
@@ -38,6 +41,7 @@ module system
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
+    HV_ON_LED,
     SCALE,
     SCLK,
     adc_clk_n_i,
@@ -55,7 +59,7 @@ module system
     dac_wrt_o,
     led_o);
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.BOOST_SHDN DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.BOOST_SHDN, LAYERED_METADATA undef" *) output [0:0]BOOST_SHDN;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.DAC_CLR RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.DAC_CLR, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) output [0:0]DAC_CLR;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.DAC_CLR RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.DAC_CLR, INSERT_VIP 0, POLARITY ACTIVE_LOW, PortWidth 1" *) output [0:0]DAC_CLR;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clockenable:1.0 CE.DAC_SYNC CE" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CE.DAC_SYNC, POLARITY ACTIVE_LOW" *) output [0:0]DAC_SYNC;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *) (* X_INTERFACE_MODE = "Master" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_addr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR BA" *) inout [2:0]DDR_ba;
@@ -80,6 +84,7 @@ module system
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK" *) inout FIXED_IO_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
+  output [0:0]HV_ON_LED;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SCALE DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SCALE, LAYERED_METADATA undef" *) output [0:0]SCALE;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.SCLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.SCLK, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output SCLK;
   input adc_clk_n_i;
@@ -116,17 +121,20 @@ module system
   wire DDR_reset_n;
   wire DDR_we_n;
   wire DIN;
+  wire DOUT;
   wire FIXED_IO_ddr_vrn;
   wire FIXED_IO_ddr_vrp;
   wire [53:0]FIXED_IO_mio;
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
+  wire [0:0]SCALE;
   wire SCLK;
   wire adc_clk_n_i;
   wire adc_clk_p_i;
   wire [15:0]adc_dat_a_i;
   wire [15:0]adc_dat_b_i;
+  wire [2:0]axi_gpio_0_gpio_io_o;
   (* CONN_BUS_INFO = "axi_quad_spi_0_SPI_0 xilinx.com:interface:spi:1.0 None IO0_T" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire axi_quad_spi_0_SPI_0_IO0_T;
   (* CONN_BUS_INFO = "axi_quad_spi_0_SPI_0 xilinx.com:interface:spi:1.0 None IO1_O" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire axi_quad_spi_0_SPI_0_IO1_O;
   (* CONN_BUS_INFO = "axi_quad_spi_0_SPI_0 xilinx.com:interface:spi:1.0 None IO1_T" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire axi_quad_spi_0_SPI_0_IO1_T;
@@ -230,8 +238,9 @@ module system
   wire ps_0_M_AXI_GP0_WVALID;
   wire [0:0]rst_0_peripheral_aresetn;
 
+  assign HV_ON_LED[0] = BOOST_SHDN;
   system_axi_gpio_0_1 axi_gpio_0
-       (.gpio_io_o(DAC_CLR),
+       (.gpio_io_o(axi_gpio_0_gpio_io_o),
         .s_axi_aclk(pll_0_clk_out1),
         .s_axi_araddr(axi_smc_M02_AXI_ARADDR),
         .s_axi_aresetn(rst_0_peripheral_aresetn),
@@ -253,7 +262,7 @@ module system
         .s_axi_wvalid(axi_smc_M02_AXI_WVALID));
   system_axi_quad_spi_0_0 axi_quad_spi_0
        (.ext_spi_clk(pll_0_clk_out1),
-        .io0_i(1'b0),
+        .io0_i(DOUT),
         .io0_o(DIN),
         .io0_t(axi_quad_spi_0_SPI_0_IO0_T),
         .io1_i(1'b0),
@@ -408,8 +417,10 @@ module system
         .s_axi_aresetn(rst_0_peripheral_aresetn));
   assign ilconstant_0_dout = 4'hF;
   assign ilconstant_1_dout = 1'h1;
-  assign BOOST_SHDN = 1'h1;
   assign DAC_SYNC = axi_quad_spi_0_ss_o[0:0];
+  assign BOOST_SHDN = axi_gpio_0_gpio_io_o[0:0];
+  assign SCALE = axi_gpio_0_gpio_io_o[2:2];
+  assign DAC_CLR = axi_gpio_0_gpio_io_o[1:1];
   system_pll_0_0 pll_0
        (.clk_in1_n(adc_clk_n_i),
         .clk_in1_p(adc_clk_p_i),

@@ -206,6 +206,18 @@ set_property IOSTANDARD LVCMOS33 [get_ports SCALE]
 set_property SLEW FAST [get_ports SCALE]
 set_property DRIVE 8 [get_ports SCALE]
 set_property PACKAGE_PIN J16 [get_ports SCALE]
+
+set_property IOSTANDARD LVCMOS33 [get_ports DOUT]
+set_property SLEW FAST [get_ports DOUT]
+set_property DRIVE 8 [get_ports DOUT]
+set_property PACKAGE_PIN G18 [get_ports DOUT]
+
+set_property IOSTANDARD LVCMOS33 [get_ports HV_ON_LED]
+set_property SLEW FAST [get_ports HV_ON_LED]
+set_property DRIVE 8 [get_ports HV_ON_LED]
+set_property PACKAGE_PIN G17 [get_ports HV_ON_LED]
+
+
 ### SATA connector
 
 #set_property IOSTANDARD DIFF_HSTL_I_18 [get_ports daisy_p_o[*]]

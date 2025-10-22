@@ -300,7 +300,7 @@ BEGIN
       C_XIP_PERF_MODE => 1,
       C_BYTE_LEVEL_INTERRUPT_EN => 0,
       C_UC_FAMILY => 0,
-      C_FIFO_DEPTH => 16,
+      C_FIFO_DEPTH => 0,
       C_SCK_RATIO => 128,
       C_DUAL_QUAD_MODE => 0,
       C_NUM_SS_BITS => 2,

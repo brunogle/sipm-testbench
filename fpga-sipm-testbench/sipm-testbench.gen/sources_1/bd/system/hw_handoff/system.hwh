@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Oct 20 17:10:20 2025" VIVADOVERSION="2025.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Oct 22 03:05:29 2025" VIVADOVERSION="2025.1">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="system" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
   <EXTERNALPORTS>
-    <PORT DIR="O" LEFT="0" NAME="BOOST_SHDN" RIGHT="0" SIGIS="data" SIGNAME="ilconstant_4_dout">
+    <PORT DIR="O" LEFT="0" NAME="BOOST_SHDN" RIGHT="0" SIGIS="data" SIGNAME="ilslice_1_Dout">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="ilconstant_4" PORT="dout"/>
+        <CONNECTION INSTANCE="ilslice_1" PORT="Dout"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="0" NAME="DAC_CLR" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst" SIGNAME="axi_gpio_0_gpio_io_o">
+    <PORT DIR="O" LEFT="0" NAME="DAC_CLR" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst" SIGNAME="ilslice_3_Dout">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="axi_gpio_0" PORT="gpio_io_o"/>
+        <CONNECTION INSTANCE="ilslice_3" PORT="Dout"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" LEFT="0" NAME="DAC_SYNC" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="ce" SIGNAME="ilslice_0_Dout">
@@ -99,7 +99,11 @@
         <CONNECTION INSTANCE="axi_quad_spi_0" PORT="io0_o"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" NAME="DOUT" SIGIS="data"/>
+    <PORT DIR="I" NAME="DOUT" SIGIS="data" SIGNAME="External_Ports_DOUT">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axi_quad_spi_0" PORT="io0_i"/>
+      </CONNECTIONS>
+    </PORT>
     <PORT DIR="IO" NAME="FIXED_IO_ddr_vrn" SIGIS="undef" SIGNAME="ps_0_DDR_VRN">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ps_0" PORT="DDR_VRN"/>
@@ -130,7 +134,16 @@
         <CONNECTION INSTANCE="ps_0" PORT="PS_SRSTB"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="0" NAME="SCALE" RIGHT="0" SIGIS="data"/>
+    <PORT DIR="O" LEFT="0" NAME="HV_ON_LED" RIGHT="0" SIGIS="undef" SIGNAME="ilslice_1_Dout">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="ilslice_1" PORT="Dout"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="0" NAME="SCALE" RIGHT="0" SIGIS="data" SIGNAME="ilslice_2_Dout">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="ilslice_2" PORT="Dout"/>
+      </CONNECTIONS>
+    </PORT>
     <PORT CLKFREQUENCY="100000000" DIR="O" NAME="SCLK" SIGIS="clk" SIGNAME="axi_quad_spi_0_sck_o">
       <CONNECTIONS>
         <CONNECTION INSTANCE="axi_quad_spi_0" PORT="sck_o"/>
@@ -241,7 +254,7 @@
             <REGISTER NAME="GPIO_DATA">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO Data register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x0"/>
-              <PROPERTY NAME="SIZE" VALUE="1"/>
+              <PROPERTY NAME="SIZE" VALUE="3"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -254,14 +267,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="3"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="GPIO_TRI">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO 3-State Control register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x4"/>
-              <PROPERTY NAME="SIZE" VALUE="1"/>
+              <PROPERTY NAME="SIZE" VALUE="3"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -274,7 +287,7 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="3"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
@@ -410,7 +423,7 @@
         <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000000"/>
         <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
         <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="3"/>
         <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
         <PARAMETER NAME="C_IS_DUAL" VALUE="0"/>
         <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
@@ -426,9 +439,11 @@
         <PARAMETER NAME="C_HIGHADDR" VALUE="0x4120FFFF"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="O" LEFT="0" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_gpio_io_o">
+        <PORT DIR="O" LEFT="2" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_gpio_io_o">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="DAC_CLR"/>
+            <CONNECTION INSTANCE="ilslice_1" PORT="Din"/>
+            <CONNECTION INSTANCE="ilslice_2" PORT="Din"/>
+            <CONNECTION INSTANCE="ilslice_3" PORT="Din"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="125000000" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="pll_0_clk_out1">
@@ -1362,7 +1377,7 @@
         <PARAMETER NAME="C_BYTE_LEVEL_INTERRUPT_EN" VALUE="0"/>
         <PARAMETER NAME="C_DUAL_QUAD_MODE" VALUE="0"/>
         <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
-        <PARAMETER NAME="C_FIFO_DEPTH" VALUE="16"/>
+        <PARAMETER NAME="C_FIFO_DEPTH" VALUE="0"/>
         <PARAMETER NAME="C_INSTANCE" VALUE="axi_quad_spi_inst"/>
         <PARAMETER NAME="C_LSB_STUP" VALUE="0"/>
         <PARAMETER NAME="C_NEW_SEQ_EN" VALUE="1"/>
@@ -1389,7 +1404,7 @@
         <PARAMETER NAME="C_SCK_RATIO1" VALUE="1"/>
         <PARAMETER NAME="C_USE_STARTUP_INT" VALUE="0"/>
         <PARAMETER NAME="Component_Name" VALUE="system_axi_quad_spi_0_0"/>
-        <PARAMETER NAME="FIFO_INCLUDED" VALUE="1"/>
+        <PARAMETER NAME="FIFO_INCLUDED" VALUE="0"/>
         <PARAMETER NAME="Master_mode" VALUE="1"/>
         <PARAMETER NAME="Multiples16" VALUE="8"/>
         <PARAMETER NAME="QSPI_BOARD_INTERFACE" VALUE="Custom"/>
@@ -1405,7 +1420,11 @@
             <CONNECTION INSTANCE="pll_0" PORT="clk_out1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="io0_i" SIGIS="undef"/>
+        <PORT DIR="I" NAME="io0_i" SIGIS="undef" SIGNAME="External_Ports_DOUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="DOUT"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" NAME="io0_o" SIGIS="undef" SIGNAME="axi_quad_spi_0_io0_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="DIN"/>
@@ -2647,30 +2666,13 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="0" FULLNAME="/ilconstant_4" HWVERSION="2.0" INSTANCE="ilconstant_4" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:2.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="CONST_VAL" VALUE="0x1"/>
-        <PARAMETER NAME="CONST_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="Component_Name" VALUE="system_ilconstant_3_1"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="ilconstant_4_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="BOOST_SHDN"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
     <MODULE COREREVISION="0" FULLNAME="/ilslice_0" HWVERSION="2.0" INSTANCE="ilslice_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlslice" VLNV="xilinx.com:ip:xlslice:2.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="DIN_FROM" VALUE="0"/>
         <PARAMETER NAME="DIN_TO" VALUE="0"/>
         <PARAMETER NAME="DIN_WIDTH" VALUE="2"/>
-        <PARAMETER NAME="Component_Name" VALUE="system_ilslice_0_2"/>
+        <PARAMETER NAME="Component_Name" VALUE="system_ilslice_0_0"/>
         <PARAMETER NAME="DOUT_WIDTH" VALUE="1"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -2683,6 +2685,79 @@
         <PORT DIR="O" LEFT="0" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="ilslice_0_Dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="DAC_SYNC"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="0" FULLNAME="/ilslice_1" HWVERSION="2.0" INSTANCE="ilslice_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlslice" VLNV="xilinx.com:ip:xlslice:2.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="DIN_FROM" VALUE="0"/>
+        <PARAMETER NAME="DIN_TO" VALUE="0"/>
+        <PARAMETER NAME="DIN_WIDTH" VALUE="3"/>
+        <PARAMETER NAME="Component_Name" VALUE="system_ilslice_0_1"/>
+        <PARAMETER NAME="DOUT_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="2" NAME="Din" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_gpio_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="gpio_io_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="ilslice_1_Dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="HV_ON_LED"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="BOOST_SHDN"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="0" FULLNAME="/ilslice_2" HWVERSION="2.0" INSTANCE="ilslice_2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlslice" VLNV="xilinx.com:ip:xlslice:2.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="DIN_FROM" VALUE="2"/>
+        <PARAMETER NAME="DIN_TO" VALUE="2"/>
+        <PARAMETER NAME="DIN_WIDTH" VALUE="3"/>
+        <PARAMETER NAME="Component_Name" VALUE="system_ilslice_1_0"/>
+        <PARAMETER NAME="DOUT_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="2" NAME="Din" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_gpio_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="gpio_io_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="ilslice_2_Dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SCALE"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="0" FULLNAME="/ilslice_3" HWVERSION="2.0" INSTANCE="ilslice_3" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlslice" VLNV="xilinx.com:ip:xlslice:2.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="DIN_FROM" VALUE="1"/>
+        <PARAMETER NAME="DIN_TO" VALUE="1"/>
+        <PARAMETER NAME="DIN_WIDTH" VALUE="3"/>
+        <PARAMETER NAME="Component_Name" VALUE="system_ilslice_2_0"/>
+        <PARAMETER NAME="DOUT_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="2" NAME="Din" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_gpio_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="gpio_io_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="ilslice_3_Dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="DAC_CLR"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
