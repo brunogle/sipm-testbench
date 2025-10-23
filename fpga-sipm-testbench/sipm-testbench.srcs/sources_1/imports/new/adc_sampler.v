@@ -21,12 +21,30 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module adc_sampler
-(
-    
+module adc_sampler (
+    input wire          clk,
+    input wire          resetn,
+    input wire [31:0]   s_axi_awaddr,
+    input wire          s_axi_awvalid,
+    output wire         s_axi_awready,
+    input wire [31:0]   s_axi_wdata,
+    input wire [3:0]    s_axi_wstrb,
+    input wire          s_axi_wvalid,
+    output wire         s_axi_wready,
+    output wire [1:0]   s_axi_bresp,
+    output wire         s_axi_bvalid,
+    input wire          s_axi_bready,
+    input wire [31:0]   s_axi_araddr,
+    input wire          s_axi_arvalid,
+    output wire         s_axi_arready,
+    output wire [31:0]  s_axi_rdata,
+    output wire [1:0]   s_axi_rresp,
+    output wire         s_axi_rvalid,
+    input wire          s_axi_rready,
+    output reg [31:0]   rw_reg_start,
+    output reg [31:0]   rw_reg_count,
+
     input sample,
-    input clk,
-    input aresetn,
     
      // Slave side
     output wire                        s_axis_tready,
@@ -39,12 +57,97 @@ module adc_sampler
     output  wire                        m_axis_tvalid,
     output  wire                        m_axis_tlast,
     output  wire  [0:1]                 m_axis_tkeep
-    );
+);
+    
+    // Internal signals
+    reg [31:0] rdata_reg;
+    reg rvalid_reg, bvalid_reg;
+    reg s_axi_awready_reg, wready_reg, arready_reg;
+    
+    reg clear_start_reg;
+    
+    assign s_axi_awready = s_axi_awready_reg;
+    assign s_axi_wready = wready_reg;
+    assign s_axi_bresp = 2'b00; // OKAY response
+    assign s_axi_bvalid = bvalid_reg;
+    assign s_axi_arready = arready_reg;
+    assign s_axi_rdata = rdata_reg;
+    assign s_axi_rresp = 2'b00; // OKAY response
+    assign s_axi_rvalid = rvalid_reg;
+
+    // Write address handshake
+    always @(posedge clk) begin
+        if (!resetn) begin
+            s_axi_awready_reg <= 1'b0;
+        end else if (s_axi_awvalid && !s_axi_awready_reg) begin
+            s_axi_awready_reg <= 1'b1;
+        end else begin
+            s_axi_awready_reg <= 1'b0;
+        end
+    end
+
+    // Write data handshake
+    always @(posedge clk) begin
+        if (!resetn) begin
+            wready_reg <= 1'b0;
+            bvalid_reg <= 1'b0;
+        end else if (s_axi_wvalid && !wready_reg) begin
+            wready_reg <= 1'b1;
+            case (s_axi_awaddr[5:2])
+                4'd0: begin
+                    if (s_axi_wstrb[0]) rw_reg_start[7:0] <= s_axi_wdata[7:0];
+                    if (s_axi_wstrb[1]) rw_reg_start[15:8] <= s_axi_wdata[15:8];
+                    if (s_axi_wstrb[2]) rw_reg_start[23:16] <= s_axi_wdata[23:16];
+                    if (s_axi_wstrb[3]) rw_reg_start[31:24] <= s_axi_wdata[31:24];
+                end
+                4'd1: begin
+                    if (s_axi_wstrb[0]) rw_reg_count[7:0] <= s_axi_wdata[7:0];
+                    if (s_axi_wstrb[1]) rw_reg_count[15:8] <= s_axi_wdata[15:8];
+                    if (s_axi_wstrb[2]) rw_reg_count[23:16] <= s_axi_wdata[23:16];
+                    if (s_axi_wstrb[3]) rw_reg_count[31:24] <= s_axi_wdata[31:24];
+                end
+                default: begin
+                    // Handle invalid addresses
+                end
+            endcase
+            bvalid_reg <= 1'b1;
+        end else if (s_axi_bready && bvalid_reg) begin
+            bvalid_reg <= 1'b0;
+        end else begin
+            wready_reg <= 1'b0;
+        end
+        
+        if(clear_start_reg) begin
+            rw_reg_start <= 0;
+        end
+    end
+
+    // Read address handshake
+    always @(posedge clk) begin
+        if (!resetn) begin
+            arready_reg <= 1'b0;
+            rvalid_reg <= 1'b0;
+        end else if (s_axi_arvalid && !arready_reg) begin
+            arready_reg <= 1'b1;
+            case (s_axi_araddr[5:2])
+                4'd0: rdata_reg <= rw_reg_start;
+                4'd1: rdata_reg <= rw_reg_count;
+                default: rdata_reg <= 32'h00000000; // Default value
+            endcase
+            rvalid_reg <= 1'b1;
+        end else if (s_axi_rready && rvalid_reg) begin
+            rvalid_reg <= 1'b0;
+        end else begin
+            arready_reg <= 1'b0;
+        end
+    end
    
     reg [31:0]           buffer_data;
     reg                  buffer_valid;
     reg                  buffer_tlast;
     reg [0:3]            buffer_tkeep;
+    
+    reg [31:0]           count;
     
     assign m_axis_tdata  = buffer_data;
     assign m_axis_tvalid = buffer_valid;
@@ -53,25 +156,31 @@ module adc_sampler
     assign m_axis_tlast = buffer_tlast;
     
     always @(posedge clk) begin
-        if (!aresetn) begin
+        if (!resetn) begin
             buffer_data  <= 0;
             buffer_valid <= 0;
             buffer_tlast <= 0;
+            clear_start_reg <= 0;
         end else begin
-            if(sample && !buffer_tlast) begin
+            if(rw_reg_start && (count < rw_reg_count - 1) && !clear_start_reg) begin
                 buffer_valid <= 1;
-                buffer_data <= s_axis_tdata;            
-            end else if(!sample && !buffer_tlast && buffer_valid) begin
+                buffer_data <= s_axis_tdata;
+                count <= count + 1;      
+            end else if(rw_reg_start && (count == rw_reg_count - 1) && !clear_start_reg) begin
                 buffer_tlast <= 1;
                 buffer_data <= s_axis_tdata;
-            end else if(!sample && buffer_tlast) begin
+                count <= count + 1;
+            end else if(rw_reg_start) begin
                 buffer_tlast <= 0;
                 buffer_valid <= 0;
-                buffer_data <= s_axis_tdata;
+                buffer_data <= 0;
+                count <= 0;
+                clear_start_reg <= 1;
             end else begin
                 buffer_tlast <= 0;
                 buffer_data <= 0;
                 buffer_valid <= 0;
+                clear_start_reg <= 0;
             end
         end
     end
