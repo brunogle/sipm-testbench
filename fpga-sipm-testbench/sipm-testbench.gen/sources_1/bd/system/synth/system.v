@@ -2,8 +2,8 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-//Date        : Thu Oct 23 01:18:09 2025
-//Host        : bruno-desktop-fedora running 64-bit Fedora Linux 42 (Workstation Edition)
+//Date        : Fri Oct 24 02:03:46 2025
+//Host        : bruno-latitude-fedora running 64-bit Fedora Linux 42 (KDE Plasma Desktop Edition)
 //Command     : generate_target system.bd
 //Design      : system
 //Purpose     : IP block netlist
@@ -13,9 +13,11 @@
 /* d0: BOOST_SDN/HV_ON_LED
 d1: DAC_CLR
 d2: SCALE */
-(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=18,numReposBlks=18,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,\"\"\"da_axi4_cnt\"\"\"=25,\"\"\"da_board_cnt\"\"\"=1,\"\"\"da_clkrst_cnt\"\"\"=2,\"\"da_axi4_cnt\"\"=3,synth_mode=None}" *) (* HW_HANDOFF = "system.hwdef" *) 
+(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=21,numReposBlks=21,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,\"\"\"\"da_axi4_cnt\"\"\"\"=25,\"\"\"\"da_board_cnt\"\"\"\"=1,\"\"\"\"da_clkrst_cnt\"\"\"\"=2,\"\"\"da_axi4_cnt\"\"\"=3,da_axi4_cnt=1,synth_mode=None}" *) (* HW_HANDOFF = "system.hwdef" *) 
 module system
-   (BOOST_SHDN,
+   (ADC_CS,
+    ADC_DRDY,
+    BOOST_SHDN,
     DAC_CLR,
     DAC_SYNC,
     DDR_addr,
@@ -58,6 +60,8 @@ module system
     dac_sel_o,
     dac_wrt_o,
     led_o);
+  output [0:0]ADC_CS;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.ADC_DRDY DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.ADC_DRDY, LAYERED_METADATA undef" *) input ADC_DRDY;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.BOOST_SHDN DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.BOOST_SHDN, LAYERED_METADATA undef" *) output [0:0]BOOST_SHDN;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.DAC_CLR RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.DAC_CLR, INSERT_VIP 0, POLARITY ACTIVE_LOW, PortWidth 1" *) output [0:0]DAC_CLR;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clockenable:1.0 CE.DAC_SYNC CE" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CE.DAC_SYNC, POLARITY ACTIVE_LOW" *) output [0:0]DAC_SYNC;
@@ -102,6 +106,8 @@ module system
   output dac_wrt_o;
   output [0:0]led_o;
 
+  wire [0:0]ADC_CS;
+  wire ADC_DRDY;
   wire [0:0]BOOST_SHDN;
   wire [0:0]DAC_CLR;
   wire [0:0]DAC_SYNC;
@@ -246,6 +252,9 @@ module system
   wire [15:0]axis_adc_0_M01_AXIS_TDATA;
   wire axis_adc_0_M01_AXIS_TREADY;
   wire axis_adc_0_M01_AXIS_TVALID;
+  wire [23:0]fir_compiler_0_M_AXIS_DATA_TDATA;
+  wire fir_compiler_0_M_AXIS_DATA_TVALID;
+  wire [0:0]ilconcat_0_dout;
   wire [3:0]ilconstant_0_dout;
   wire [0:0]ilconstant_1_dout;
   wire pll_0_clk_out1;
@@ -337,9 +346,8 @@ module system
         .s_axi_wready(axi_smc_M04_AXI_WREADY),
         .s_axi_wstrb(axi_smc_M04_AXI_WSTRB),
         .s_axi_wvalid(axi_smc_M04_AXI_WVALID),
-        .s_axis_tdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,axis_adc_0_M01_AXIS_TDATA}),
-        .s_axis_tready(axis_adc_0_M01_AXIS_TREADY),
-        .s_axis_tvalid(axis_adc_0_M01_AXIS_TVALID),
+        .s_axis_tdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,fir_compiler_0_M_AXIS_DATA_TDATA}),
+        .s_axis_tvalid(fir_compiler_0_M_AXIS_DATA_TVALID),
         .sample(1'b0));
   system_axi_dma_0_0 axi_dma_0
        (.axi_resetn(rst_0_peripheral_aresetn),
@@ -383,7 +391,8 @@ module system
         .s_axis_s2mm_tready(adc_sampler_0_m_axis_TREADY),
         .s_axis_s2mm_tvalid(adc_sampler_0_m_axis_TVALID));
   system_axi_gpio_0_1 axi_gpio_0
-       (.gpio_io_o(axi_gpio_0_gpio_io_o),
+       (.gpio2_io_i(ilconcat_0_dout),
+        .gpio_io_o(axi_gpio_0_gpio_io_o),
         .s_axi_aclk(pll_0_clk_out1),
         .s_axi_araddr(axi_smc_M02_AXI_ARADDR),
         .s_axi_aresetn(rst_0_peripheral_aresetn),
@@ -588,12 +597,21 @@ module system
         .S_AXI_wvalid(axi_smc_M01_AXI_WVALID),
         .s_axi_aclk(pll_0_clk_out1),
         .s_axi_aresetn(rst_0_peripheral_aresetn));
+  system_fir_compiler_0_0 fir_compiler_0
+       (.aclk(pll_0_clk_out1),
+        .m_axis_data_tdata(fir_compiler_0_M_AXIS_DATA_TDATA),
+        .m_axis_data_tvalid(fir_compiler_0_M_AXIS_DATA_TVALID),
+        .s_axis_data_tdata(axis_adc_0_M01_AXIS_TDATA),
+        .s_axis_data_tready(axis_adc_0_M01_AXIS_TREADY),
+        .s_axis_data_tvalid(axis_adc_0_M01_AXIS_TVALID));
+  assign ilconcat_0_dout = {ADC_DRDY};
   assign ilconstant_0_dout = 4'hF;
   assign ilconstant_1_dout = 1'h1;
   assign DAC_SYNC = axi_quad_spi_0_ss_o[0:0];
   assign BOOST_SHDN = axi_gpio_0_gpio_io_o[0:0];
   assign SCALE = axi_gpio_0_gpio_io_o[2:2];
   assign DAC_CLR = axi_gpio_0_gpio_io_o[1:1];
+  assign ADC_CS = axi_quad_spi_0_ss_o[1:1];
   system_pll_0_0 pll_0
        (.clk_in1_n(adc_clk_n_i),
         .clk_in1_p(adc_clk_p_i),

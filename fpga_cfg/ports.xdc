@@ -217,6 +217,16 @@ set_property SLEW FAST [get_ports HV_ON_LED]
 set_property DRIVE 8 [get_ports HV_ON_LED]
 set_property PACKAGE_PIN G17 [get_ports HV_ON_LED]
 
+set_property IOSTANDARD LVCMOS33 [get_ports ADC_CS]
+set_property SLEW FAST [get_ports ADC_CS]
+set_property DRIVE 8 [get_ports ADC_CS]
+set_property PACKAGE_PIN L15 [get_ports ADC_CS]
+
+set_property IOSTANDARD LVCMOS33 [get_ports ADC_DRDY]
+set_property SLEW FAST [get_ports ADC_DRDY]
+set_property DRIVE 8 [get_ports ADC_DRDY]
+set_property PACKAGE_PIN H17 [get_ports ADC_DRDY]
+
 
 ### SATA connector
 

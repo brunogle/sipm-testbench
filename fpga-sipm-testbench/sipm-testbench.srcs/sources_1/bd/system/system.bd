@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x44D43149BC7AE962",
+      "boundary_crc": "0x5387F291A45E0E67",
       "device": "xc7z010clg400-1",
       "gen_directory": "../../../../sipm-testbench.gen/sources_1/bd/system",
       "name": "system",
@@ -28,7 +28,10 @@
       "axi_dma_0": "",
       "smartconnect_0": "",
       "adc_sampler_0": "",
-      "system_ila_0": ""
+      "system_ila_0": "",
+      "fir_compiler_0": "",
+      "ilslice_4": "",
+      "ilconcat_0": ""
     },
     "interface_ports": {
       "Vp_Vn": {
@@ -384,6 +387,27 @@
           "PortWidth": {
             "value": "1",
             "value_src": "user_prop"
+          }
+        }
+      },
+      "ADC_CS": {
+        "direction": "O",
+        "left": "0",
+        "right": "0",
+        "parameters": {
+          "PortWidth": {
+            "value": "1",
+            "value_src": "user_prop"
+          }
+        }
+      },
+      "ADC_DRDY": {
+        "type": "data",
+        "direction": "I",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
           }
         }
       }
@@ -1740,11 +1764,23 @@
         "inst_hier_path": "axi_gpio_0",
         "has_run_ip_tcl": "true",
         "parameters": {
+          "C_ALL_INPUTS": {
+            "value": "0"
+          },
+          "C_ALL_INPUTS_2": {
+            "value": "1"
+          },
           "C_ALL_OUTPUTS": {
+            "value": "1"
+          },
+          "C_GPIO2_WIDTH": {
             "value": "1"
           },
           "C_GPIO_WIDTH": {
             "value": "3"
+          },
+          "C_IS_DUAL": {
+            "value": "1"
           }
         }
       },
@@ -1784,10 +1820,6 @@
               "M04_AXI"
             ],
             "bd_attributes": {
-              "BRIDGES": {
-                "value": "M00_AXI:M01_AXI:M02_AXI:M03_AXI:M04_AXI",
-                "value_src": "auto"
-              },
               "TYPE": {
                 "value": "interior",
                 "value_src": "default"
@@ -2290,6 +2322,34 @@
               "CLK_DOMAIN": {
                 "value": "system_pll_0_0_clk_out1",
                 "value_src": "default_prop"
+              },
+              "LAYERED_METADATA": {
+                "value": [
+                  "xilinx.com:interface:datatypes:1.0 {",
+                  "TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type automatic dependency {} format long minimum {}",
+                  "maximum {}} value 24} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} array_type {name {attribs {resolve_type immediate dependency {} format string",
+                  "minimum {} maximum {}} value chan} size {attribs {resolve_type generated dependency chan_size format long minimum {} maximum {}} value 1} stride {attribs {resolve_type generated dependency chan_stride",
+                  "format long minimum {} maximum {}} value 24} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type automatic",
+                  "dependency {} format long minimum {} maximum {}} value 24} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} array_type {name {attribs {resolve_type",
+                  "immediate dependency {} format string minimum {} maximum {}} value path} size {attribs {resolve_type generated dependency path_size format long minimum {} maximum {}} value 1} stride {attribs",
+                  "{resolve_type generated dependency path_stride format long minimum {} maximum {}} value 24} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}}",
+                  "bitwidth {attribs {resolve_type generated dependency out_width format long minimum {} maximum {}} value 24} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}",
+                  "value 0} real {fixed {fractwidth {attribs {resolve_type generated dependency out_fractwidth format long minimum {} maximum {}} value 0} signed {attribs {resolve_type generated dependency out_signed",
+                  "format bool minimum {} maximum {}} value true}}}}}}}}} TDATA_WIDTH 24 TUSER {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth",
+                  "{attribs {resolve_type automatic dependency {} format long minimum {} maximum {}} value 0} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} struct",
+                  "{field_data_valid {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value data_valid} enabled {attribs {resolve_type generated dependency data_valid_enabled",
+                  "format bool minimum {} maximum {}} value false} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type generated",
+                  "dependency data_valid_bitwidth format long minimum {} maximum {}} value 0} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0}}} field_chanid {name",
+                  "{attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value chanid} enabled {attribs {resolve_type generated dependency chanid_enabled format bool minimum {} maximum {}}",
+                  "value false} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type generated dependency chanid_bitwidth format",
+                  "long minimum {} maximum {}} value 0} bitoffset {attribs {resolve_type generated dependency chanid_bitoffset format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate",
+                  "dependency {} format bool minimum {} maximum {}} value false}}}} field_user {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value user} enabled {attribs",
+                  "{resolve_type generated dependency user_enabled format bool minimum {} maximum {}} value false} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value",
+                  "{}} bitwidth {attribs {resolve_type generated dependency user_bitwidth format long minimum {} maximum {}} value 0} bitoffset {attribs {resolve_type generated dependency user_bitoffset format long",
+                  "minimum {} maximum {}} value 0}}}}}} TUSER_WIDTH 0",
+                  "}"
+                ],
+                "value_src": "ip_prop"
               }
             },
             "port_maps": {
@@ -2618,6 +2678,39 @@
             "vlnv": "xilinx.com:interface:axis_rtl:1.0"
           }
         }
+      },
+      "fir_compiler_0": {
+        "vlnv": "xilinx.com:ip:fir_compiler:7.2",
+        "ip_revision": "24",
+        "xci_name": "system_fir_compiler_0_0",
+        "xci_path": "ip/system_fir_compiler_0_0/system_fir_compiler_0_0.xci",
+        "inst_hier_path": "fir_compiler_0",
+        "has_run_ip_tcl": "true"
+      },
+      "ilslice_4": {
+        "vlnv": "xilinx.com:inline_hdl:ilslice:1.0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "1"
+          },
+          "DIN_TO": {
+            "value": "1"
+          },
+          "DIN_WIDTH": {
+            "value": "2"
+          }
+        }
+      },
+      "ilconcat_0": {
+        "vlnv": "xilinx.com:inline_hdl:ilconcat:1.0",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "1"
+          },
+          "NUM_PORTS": {
+            "value": "1"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -2674,8 +2767,14 @@
       },
       "axis_adc_0_M01_AXIS": {
         "interface_ports": [
-          "adc_sampler_0/s_axis",
-          "axis_adc_0/M01_AXIS"
+          "axis_adc_0/M01_AXIS",
+          "fir_compiler_0/S_AXIS_DATA"
+        ]
+      },
+      "fir_compiler_0_M_AXIS_DATA": {
+        "interface_ports": [
+          "fir_compiler_0/M_AXIS_DATA",
+          "adc_sampler_0/s_axis"
         ]
       },
       "ps_0_DDR": {
@@ -2704,6 +2803,12 @@
       }
     },
     "nets": {
+      "ADC_DRDY_1": {
+        "ports": [
+          "ADC_DRDY",
+          "ilconcat_0/In0"
+        ]
+      },
       "DOUT_1": {
         "ports": [
           "DOUT",
@@ -2757,7 +2862,14 @@
       "axi_quad_spi_0_ss_o": {
         "ports": [
           "axi_quad_spi_0/ss_o",
-          "ilslice_0/Din"
+          "ilslice_0/Din",
+          "ilslice_4/Din"
+        ]
+      },
+      "ilconcat_0_dout": {
+        "ports": [
+          "ilconcat_0/dout",
+          "axi_gpio_0/gpio2_io_i"
         ]
       },
       "ilconstant_0_dout": {
@@ -2798,6 +2910,12 @@
           "DAC_CLR"
         ]
       },
+      "ilslice_4_Dout": {
+        "ports": [
+          "ilslice_4/Dout",
+          "ADC_CS"
+        ]
+      },
       "pll_0_clk_out1": {
         "ports": [
           "pll_0/clk_out1",
@@ -2814,7 +2932,8 @@
           "axi_dma_0/m_axi_s2mm_aclk",
           "smartconnect_0/aclk",
           "system_ila_0/clk",
-          "adc_sampler_0/clk"
+          "adc_sampler_0/clk",
+          "fir_compiler_0/aclk"
         ]
       },
       "pll_0_locked": {
