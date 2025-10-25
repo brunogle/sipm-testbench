@@ -361,23 +361,6 @@
 						"WVALID": { "actual": "S_AXI_wvalid"}
 					}
 				},
-				"/fir_compiler_0/M_AXIS_DATA": {
-					"interface": "xilinx.com:interface:axis:1.0",
-					"ports": {
-						"ACLK": { "actual": "aclk"},
-						"TDATA": { "actual": "m_axis_data_tdata[23:0]"},
-						"TVALID": { "actual": "m_axis_data_tvalid"}
-					}
-				},
-				"/fir_compiler_0/S_AXIS_DATA": {
-					"interface": "xilinx.com:interface:axis:1.0",
-					"ports": {
-						"ACLK": { "actual": "aclk"},
-						"TDATA": { "actual": "s_axis_data_tdata[15:0]"},
-						"TREADY": { "actual": "s_axis_data_tready"},
-						"TVALID": { "actual": "s_axis_data_tvalid"}
-					}
-				},
 				"/ps_0/M_AXI_GP0": {
 					"interface": "xilinx.com:interface:aximm:1.0",
 					"ports": {

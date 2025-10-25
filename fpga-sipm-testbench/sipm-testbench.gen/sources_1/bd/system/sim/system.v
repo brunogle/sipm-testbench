@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-//Date        : Fri Oct 24 02:03:46 2025
+//Date        : Fri Oct 24 17:07:33 2025
 //Host        : bruno-latitude-fedora running 64-bit Fedora Linux 42 (KDE Plasma Desktop Edition)
 //Command     : generate_target system.bd
 //Design      : system
@@ -13,7 +13,7 @@
 /* d0: BOOST_SDN/HV_ON_LED
 d1: DAC_CLR
 d2: SCALE */
-(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=21,numReposBlks=21,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,\"\"\"\"da_axi4_cnt\"\"\"\"=25,\"\"\"\"da_board_cnt\"\"\"\"=1,\"\"\"\"da_clkrst_cnt\"\"\"\"=2,\"\"\"da_axi4_cnt\"\"\"=3,da_axi4_cnt=1,synth_mode=None}" *) (* HW_HANDOFF = "system.hwdef" *) 
+(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=20,numReposBlks=20,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,\"\"\"\"da_axi4_cnt\"\"\"\"=25,\"\"\"\"da_board_cnt\"\"\"\"=1,\"\"\"\"da_clkrst_cnt\"\"\"\"=2,\"\"\"da_axi4_cnt\"\"\"=3,da_axi4_cnt=1,synth_mode=None}" *) (* HW_HANDOFF = "system.hwdef" *) 
 module system
    (ADC_CS,
     ADC_DRDY,
@@ -252,8 +252,6 @@ module system
   wire [15:0]axis_adc_0_M01_AXIS_TDATA;
   wire axis_adc_0_M01_AXIS_TREADY;
   wire axis_adc_0_M01_AXIS_TVALID;
-  wire [23:0]fir_compiler_0_M_AXIS_DATA_TDATA;
-  wire fir_compiler_0_M_AXIS_DATA_TVALID;
   wire [0:0]ilconcat_0_dout;
   wire [3:0]ilconstant_0_dout;
   wire [0:0]ilconstant_1_dout;
@@ -346,8 +344,9 @@ module system
         .s_axi_wready(axi_smc_M04_AXI_WREADY),
         .s_axi_wstrb(axi_smc_M04_AXI_WSTRB),
         .s_axi_wvalid(axi_smc_M04_AXI_WVALID),
-        .s_axis_tdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,fir_compiler_0_M_AXIS_DATA_TDATA}),
-        .s_axis_tvalid(fir_compiler_0_M_AXIS_DATA_TVALID),
+        .s_axis_tdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,axis_adc_0_M01_AXIS_TDATA}),
+        .s_axis_tready(axis_adc_0_M01_AXIS_TREADY),
+        .s_axis_tvalid(axis_adc_0_M01_AXIS_TVALID),
         .sample(1'b0));
   system_axi_dma_0_0 axi_dma_0
        (.axi_resetn(rst_0_peripheral_aresetn),
@@ -597,13 +596,6 @@ module system
         .S_AXI_wvalid(axi_smc_M01_AXI_WVALID),
         .s_axi_aclk(pll_0_clk_out1),
         .s_axi_aresetn(rst_0_peripheral_aresetn));
-  system_fir_compiler_0_0 fir_compiler_0
-       (.aclk(pll_0_clk_out1),
-        .m_axis_data_tdata(fir_compiler_0_M_AXIS_DATA_TDATA),
-        .m_axis_data_tvalid(fir_compiler_0_M_AXIS_DATA_TVALID),
-        .s_axis_data_tdata(axis_adc_0_M01_AXIS_TDATA),
-        .s_axis_data_tready(axis_adc_0_M01_AXIS_TREADY),
-        .s_axis_data_tvalid(axis_adc_0_M01_AXIS_TVALID));
   assign ilconcat_0_dout = {ADC_DRDY};
   assign ilconstant_0_dout = 4'hF;
   assign ilconstant_1_dout = 1'h1;
