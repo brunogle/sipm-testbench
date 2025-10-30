@@ -227,6 +227,16 @@ set_property SLEW FAST [get_ports ADC_DRDY]
 set_property DRIVE 8 [get_ports ADC_DRDY]
 set_property PACKAGE_PIN H17 [get_ports ADC_DRDY]
 
+set_property IOSTANDARD LVCMOS33 [get_ports ADC_RESET]
+set_property SLEW FAST [get_ports ADC_RESET]
+set_property DRIVE 8 [get_ports ADC_RESET]
+set_property PACKAGE_PIN H18 [get_ports ADC_RESET]
+
+set_property IOSTANDARD LVCMOS33 [get_ports ADC_START]
+set_property SLEW FAST [get_ports ADC_START]
+set_property DRIVE 8 [get_ports ADC_START]
+set_property PACKAGE_PIN J18 [get_ports ADC_START]
+
 
 ### SATA connector
 

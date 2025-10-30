@@ -2,8 +2,8 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-//Date        : Fri Oct 24 17:07:33 2025
-//Host        : bruno-latitude-fedora running 64-bit Fedora Linux 42 (KDE Plasma Desktop Edition)
+//Date        : Sat Oct 25 23:42:37 2025
+//Host        : bruno-desktop-fedora running 64-bit Fedora Linux 42 (Workstation Edition)
 //Command     : generate_target system_wrapper.bd
 //Design      : system_wrapper
 //Purpose     : IP block netlist
@@ -13,6 +13,8 @@
 module system_wrapper
    (ADC_CS,
     ADC_DRDY,
+    ADC_RESET,
+    ADC_START,
     BOOST_SHDN,
     DAC_CLR,
     DAC_SYNC,
@@ -58,6 +60,8 @@ module system_wrapper
     led_o);
   output [0:0]ADC_CS;
   input ADC_DRDY;
+  output [0:0]ADC_RESET;
+  output [0:0]ADC_START;
   output [0:0]BOOST_SHDN;
   output [0:0]DAC_CLR;
   output [0:0]DAC_SYNC;
@@ -104,6 +108,8 @@ module system_wrapper
 
   wire [0:0]ADC_CS;
   wire ADC_DRDY;
+  wire [0:0]ADC_RESET;
+  wire [0:0]ADC_START;
   wire [0:0]BOOST_SHDN;
   wire [0:0]DAC_CLR;
   wire [0:0]DAC_SYNC;
@@ -151,6 +157,8 @@ module system_wrapper
   system system_i
        (.ADC_CS(ADC_CS),
         .ADC_DRDY(ADC_DRDY),
+        .ADC_RESET(ADC_RESET),
+        .ADC_START(ADC_START),
         .BOOST_SHDN(BOOST_SHDN),
         .DAC_CLR(DAC_CLR),
         .DAC_SYNC(DAC_SYNC),
