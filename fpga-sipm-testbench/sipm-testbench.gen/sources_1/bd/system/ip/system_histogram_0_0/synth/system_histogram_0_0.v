@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "histogram,Vivado 2025.1" *)
 (* CHECK_LICENSE_TYPE = "system_histogram_0_0,histogram,{}" *)
-(* CORE_GENERATION_INFO = "system_histogram_0_0,histogram,{x_ipProduct=Vivado 2025.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=histogram,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATA_WIDTH=13,BINS=8192}" *)
+(* CORE_GENERATION_INFO = "system_histogram_0_0,histogram,{x_ipProduct=Vivado 2025.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=histogram,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATA_WIDTH=13}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module system_histogram_0_0 (
@@ -124,12 +124,11 @@ output wire [1 : 0] s_axi_rresp;
 output wire s_axi_rvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi RREADY" *)
 input wire s_axi_rready;
-input wire [13 : 0] data_in;
+input wire [12 : 0] data_in;
 input wire wr_en;
 
   histogram #(
-    .DATA_WIDTH(13),
-    .BINS(8192)
+    .DATA_WIDTH(13)
   ) inst (
     .clk(clk),
     .resetn(resetn),

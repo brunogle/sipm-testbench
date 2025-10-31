@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-//Date        : Fri Oct 31 16:40:52 2025
+//Date        : Fri Oct 31 19:31:00 2025
 //Host        : bruno-latitude-fedora running 64-bit Fedora Linux 42 (KDE Plasma Desktop Edition)
 //Command     : generate_target system.bd
 //Design      : system
@@ -12,8 +12,11 @@
 
 /* d0: BOOST_SDN/HV_ON_LED
 d1: DAC_CLR
-d2: SCALE */
-(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=25,numReposBlks=25,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,\"\"\"\"\"\"\"\"\"\"\"da_axi4_cnt\"\"\"\"\"\"\"\"\"\"\"=25,\"\"\"\"\"\"\"\"\"\"\"da_board_cnt\"\"\"\"\"\"\"\"\"\"\"=1,\"\"\"\"\"\"\"\"\"\"\"da_clkrst_cnt\"\"\"\"\"\"\"\"\"\"\"=2,\"\"\"\"\"\"\"\"\"\"da_axi4_cnt\"\"\"\"\"\"\"\"\"\"=3,\"\"\"\"\"\"\"da_axi4_cnt\"\"\"\"\"\"\"=1,\"\"\"\"da_axi4_cnt\"\"\"\"=1,synth_mode=None}" *) (* HW_HANDOFF = "system.hwdef" *) 
+d2: SCALE
+d3: ADC_RESET
+d4: ADC_START
+d5: VMON_EN */
+(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=26,numReposBlks=26,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,\"\"\"\"\"\"\"\"\"\"\"da_axi4_cnt\"\"\"\"\"\"\"\"\"\"\"=25,\"\"\"\"\"\"\"\"\"\"\"da_board_cnt\"\"\"\"\"\"\"\"\"\"\"=1,\"\"\"\"\"\"\"\"\"\"\"da_clkrst_cnt\"\"\"\"\"\"\"\"\"\"\"=2,\"\"\"\"\"\"\"\"\"\"da_axi4_cnt\"\"\"\"\"\"\"\"\"\"=3,\"\"\"\"\"\"\"da_axi4_cnt\"\"\"\"\"\"\"=1,\"\"\"\"da_axi4_cnt\"\"\"\"=1,synth_mode=None}" *) (* HW_HANDOFF = "system.hwdef" *) 
 module system
    (ADC_CS,
     ADC_DRDY,
@@ -341,11 +344,10 @@ module system
   wire smartconnect_0_M00_AXI_WREADY;
   wire [7:0]smartconnect_0_M00_AXI_WSTRB;
   wire smartconnect_0_M00_AXI_WVALID;
-  wire [15:0]vio_0_probe_out0;
-  wire [0:0]vio_0_probe_out1;
+  wire trapezoid_filter_0_peak_detected;
+  wire [12:0]trapezoid_filter_0_pulse_amplitude;
 
   assign HV_ON_LED[0] = BOOST_SHDN;
-  assign led_o[0] = vio_0_probe_out1;
   system_adc_sampler_0_0 adc_sampler_0
        (.clk(pll_0_clk_out1),
         .m_axis_tdata(adc_sampler_0_m_axis_TDATA),
@@ -373,9 +375,8 @@ module system
         .s_axi_wready(axi_smc_M04_AXI_WREADY),
         .s_axi_wstrb(axi_smc_M04_AXI_WSTRB),
         .s_axi_wvalid(axi_smc_M04_AXI_WVALID),
-        .s_axis_tdata(axis_adc_0_M01_AXIS_TDATA),
-        .s_axis_tready(axis_adc_0_M01_AXIS_TREADY),
-        .s_axis_tvalid(axis_adc_0_M01_AXIS_TVALID));
+        .s_axis_tdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .s_axis_tvalid(1'b0));
   system_axi_dma_0_0 axi_dma_0
        (.axi_resetn(rst_0_peripheral_aresetn),
         .m_axi_s2mm_aclk(pll_0_clk_out1),
@@ -643,7 +644,7 @@ module system
         .s_axi_aresetn(rst_0_peripheral_aresetn));
   system_histogram_0_0 histogram_0
        (.clk(pll_0_clk_out1),
-        .data_in(vio_0_probe_out0[13:0]),
+        .data_in(trapezoid_filter_0_pulse_amplitude),
         .resetn(rst_0_peripheral_aresetn),
         .s_axi_araddr(axi_smc_M05_AXI_ARADDR),
         .s_axi_arready(axi_smc_M05_AXI_ARREADY),
@@ -662,7 +663,7 @@ module system
         .s_axi_wready(axi_smc_M05_AXI_WREADY),
         .s_axi_wstrb(axi_smc_M05_AXI_WSTRB),
         .s_axi_wvalid(axi_smc_M05_AXI_WVALID),
-        .wr_en(vio_0_probe_out1));
+        .wr_en(trapezoid_filter_0_peak_detected));
   assign ilconcat_0_dout = {ADC_DRDY};
   assign ilconstant_0_dout = 4'hF;
   assign ilconstant_1_dout = 1'h1;
@@ -831,8 +832,16 @@ module system
         .probe0(rw_reg_count),
         .probe1(rw_reg_start),
         .resetn(rst_0_peripheral_aresetn));
+  system_trapezoid_filter_0_1 trapezoid_filter_0
+       (.aclk(pll_0_clk_out1),
+        .aresetn(rst_0_peripheral_aresetn),
+        .m_axis_tready(1'b1),
+        .md_axis_tready(1'b1),
+        .peak_detected(trapezoid_filter_0_peak_detected),
+        .pulse_amplitude(trapezoid_filter_0_pulse_amplitude),
+        .s_axis_tdata(axis_adc_0_M01_AXIS_TDATA[13:0]),
+        .s_axis_tready(axis_adc_0_M01_AXIS_TREADY),
+        .s_axis_tvalid(axis_adc_0_M01_AXIS_TVALID));
   system_vio_0_0 vio_0
-       (.clk(pll_0_clk_out1),
-        .probe_out0(vio_0_probe_out0),
-        .probe_out1(vio_0_probe_out1));
+       (.clk(pll_0_clk_out1));
 endmodule
