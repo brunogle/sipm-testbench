@@ -43,20 +43,18 @@ module adc_sampler (
     input wire          s_axi_rready,
     output reg [31:0]   rw_reg_start,
     output reg [31:0]   rw_reg_count,
-
-    input sample,
     
      // Slave side
     output wire                        s_axis_tready,
-    input  wire [31:0]                 s_axis_tdata,
+    input  wire [15:0]                 s_axis_tdata,
     input  wire                        s_axis_tvalid,
 
     // Master side
     input   wire                        m_axis_tready,
-    output  wire [31:0]                 m_axis_tdata,
+    output  wire [15:0]                 m_axis_tdata,
     output  wire                        m_axis_tvalid,
     output  wire                        m_axis_tlast,
-    output  wire  [0:1]                 m_axis_tkeep
+    output  wire  [0:3]                 m_axis_tkeep
 );
     
     // Internal signals
@@ -142,10 +140,10 @@ module adc_sampler (
         end
     end
    
-    reg [31:0]           buffer_data;
+    reg [15:0]           buffer_data;
     reg                  buffer_valid;
     reg                  buffer_tlast;
-    reg [0:3]            buffer_tkeep;
+    reg [0:1]            buffer_tkeep;
     
     reg [31:0]           count;
     

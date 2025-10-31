@@ -11,10 +11,10 @@ open_project $project_dir/$project_name.xpr
 #launch synthesis
 reset_run synth_1
 
-launch_runs -jobs 4 synth_1
+launch_runs -jobs 2 synth_1
 wait_on_run synth_1
 
-launch_runs -jobs 4 impl_1
+launch_runs -jobs 2 impl_1
 wait_on_run impl_1
 
 open_run [get_runs impl_1]

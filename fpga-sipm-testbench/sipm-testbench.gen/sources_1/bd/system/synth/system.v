@@ -2,8 +2,8 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-//Date        : Sat Oct 25 23:42:36 2025
-//Host        : bruno-desktop-fedora running 64-bit Fedora Linux 42 (Workstation Edition)
+//Date        : Thu Oct 30 22:46:36 2025
+//Host        : bruno-latitude-fedora running 64-bit Fedora Linux 42 (KDE Plasma Desktop Edition)
 //Command     : generate_target system.bd
 //Design      : system
 //Purpose     : IP block netlist
@@ -13,7 +13,7 @@
 /* d0: BOOST_SDN/HV_ON_LED
 d1: DAC_CLR
 d2: SCALE */
-(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=22,numReposBlks=22,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,\"\"\"\"\"da_axi4_cnt\"\"\"\"\"=25,\"\"\"\"\"da_board_cnt\"\"\"\"\"=1,\"\"\"\"\"da_clkrst_cnt\"\"\"\"\"=2,\"\"\"\"da_axi4_cnt\"\"\"\"=3,\"da_axi4_cnt\"=1,synth_mode=None}" *) (* HW_HANDOFF = "system.hwdef" *) 
+(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=25,numReposBlks=25,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,\"\"\"\"\"\"\"\"\"\"da_axi4_cnt\"\"\"\"\"\"\"\"\"\"=25,\"\"\"\"\"\"\"\"\"\"da_board_cnt\"\"\"\"\"\"\"\"\"\"=1,\"\"\"\"\"\"\"\"\"\"da_clkrst_cnt\"\"\"\"\"\"\"\"\"\"=2,\"\"\"\"\"\"\"\"\"da_axi4_cnt\"\"\"\"\"\"\"\"\"=3,\"\"\"\"\"\"da_axi4_cnt\"\"\"\"\"\"=1,\"\"\"da_axi4_cnt\"\"\"=1,synth_mode=None}" *) (* HW_HANDOFF = "system.hwdef" *) 
 module system
    (ADC_CS,
     ADC_DRDY,
@@ -48,6 +48,7 @@ module system
     HV_ON_LED,
     SCALE,
     SCLK,
+    VMON_EN,
     adc_clk_n_i,
     adc_clk_p_i,
     adc_csn_o,
@@ -95,6 +96,7 @@ module system
   output [0:0]HV_ON_LED;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.SCALE DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.SCALE, LAYERED_METADATA undef" *) output [0:0]SCALE;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.SCLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.SCLK, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output SCLK;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.VMON_EN DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.VMON_EN, LAYERED_METADATA undef" *) output [0:0]VMON_EN;
   input adc_clk_n_i;
   input adc_clk_p_i;
   output adc_csn_o;
@@ -142,12 +144,13 @@ module system
   wire FIXED_IO_ps_srstb;
   wire [0:0]SCALE;
   wire SCLK;
+  wire [0:0]VMON_EN;
   wire adc_clk_n_i;
   wire adc_clk_p_i;
   wire [15:0]adc_dat_a_i;
   wire [15:0]adc_dat_b_i;
-  (* CONN_BUS_INFO = "adc_sampler_0_m_axis xilinx.com:interface:axis:1.0 None TDATA" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]adc_sampler_0_m_axis_TDATA;
-  (* CONN_BUS_INFO = "adc_sampler_0_m_axis xilinx.com:interface:axis:1.0 None TKEEP" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire [0:1]adc_sampler_0_m_axis_TKEEP;
+  (* CONN_BUS_INFO = "adc_sampler_0_m_axis xilinx.com:interface:axis:1.0 None TDATA" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire [15:0]adc_sampler_0_m_axis_TDATA;
+  (* CONN_BUS_INFO = "adc_sampler_0_m_axis xilinx.com:interface:axis:1.0 None TKEEP" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire [0:3]adc_sampler_0_m_axis_TKEEP;
   (* CONN_BUS_INFO = "adc_sampler_0_m_axis xilinx.com:interface:axis:1.0 None TLAST" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire adc_sampler_0_m_axis_TLAST;
   (* CONN_BUS_INFO = "adc_sampler_0_m_axis xilinx.com:interface:axis:1.0 None TREADY" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire adc_sampler_0_m_axis_TREADY;
   (* CONN_BUS_INFO = "adc_sampler_0_m_axis xilinx.com:interface:axis:1.0 None TVALID" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire adc_sampler_0_m_axis_TVALID;
@@ -167,7 +170,7 @@ module system
   wire axi_dma_0_M_AXI_S2MM_WREADY;
   wire [3:0]axi_dma_0_M_AXI_S2MM_WSTRB;
   wire axi_dma_0_M_AXI_S2MM_WVALID;
-  wire [4:0]axi_gpio_0_gpio_io_o;
+  wire [5:0]axi_gpio_0_gpio_io_o;
   wire [1:0]axi_quad_spi_0_ss_o;
   wire [6:0]axi_smc_M00_AXI_ARADDR;
   wire axi_smc_M00_AXI_ARREADY;
@@ -255,6 +258,23 @@ module system
   wire axi_smc_M04_AXI_WREADY;
   wire [3:0]axi_smc_M04_AXI_WSTRB;
   wire axi_smc_M04_AXI_WVALID;
+  wire [31:0]axi_smc_M05_AXI_ARADDR;
+  wire axi_smc_M05_AXI_ARREADY;
+  wire axi_smc_M05_AXI_ARVALID;
+  wire [31:0]axi_smc_M05_AXI_AWADDR;
+  wire axi_smc_M05_AXI_AWREADY;
+  wire axi_smc_M05_AXI_AWVALID;
+  wire axi_smc_M05_AXI_BREADY;
+  wire [1:0]axi_smc_M05_AXI_BRESP;
+  wire axi_smc_M05_AXI_BVALID;
+  wire [31:0]axi_smc_M05_AXI_RDATA;
+  wire axi_smc_M05_AXI_RREADY;
+  wire [1:0]axi_smc_M05_AXI_RRESP;
+  wire axi_smc_M05_AXI_RVALID;
+  wire [31:0]axi_smc_M05_AXI_WDATA;
+  wire axi_smc_M05_AXI_WREADY;
+  wire [3:0]axi_smc_M05_AXI_WSTRB;
+  wire axi_smc_M05_AXI_WVALID;
   wire [15:0]axis_adc_0_M01_AXIS_TDATA;
   wire axis_adc_0_M01_AXIS_TREADY;
   wire axis_adc_0_M01_AXIS_TVALID;
@@ -321,8 +341,11 @@ module system
   wire smartconnect_0_M00_AXI_WREADY;
   wire [7:0]smartconnect_0_M00_AXI_WSTRB;
   wire smartconnect_0_M00_AXI_WVALID;
+  wire [15:0]vio_0_probe_out0;
+  wire [0:0]vio_0_probe_out1;
 
   assign HV_ON_LED[0] = BOOST_SHDN;
+  assign led_o[0] = vio_0_probe_out1;
   system_adc_sampler_0_0 adc_sampler_0
        (.clk(pll_0_clk_out1),
         .m_axis_tdata(adc_sampler_0_m_axis_TDATA),
@@ -350,10 +373,9 @@ module system
         .s_axi_wready(axi_smc_M04_AXI_WREADY),
         .s_axi_wstrb(axi_smc_M04_AXI_WSTRB),
         .s_axi_wvalid(axi_smc_M04_AXI_WVALID),
-        .s_axis_tdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,axis_adc_0_M01_AXIS_TDATA}),
+        .s_axis_tdata(axis_adc_0_M01_AXIS_TDATA),
         .s_axis_tready(axis_adc_0_M01_AXIS_TREADY),
-        .s_axis_tvalid(axis_adc_0_M01_AXIS_TVALID),
-        .sample(1'b0));
+        .s_axis_tvalid(axis_adc_0_M01_AXIS_TVALID));
   system_axi_dma_0_0 axi_dma_0
        (.axi_resetn(rst_0_peripheral_aresetn),
         .m_axi_s2mm_aclk(pll_0_clk_out1),
@@ -390,8 +412,8 @@ module system
         .s_axi_lite_wdata(axi_smc_M03_AXI_WDATA),
         .s_axi_lite_wready(axi_smc_M03_AXI_WREADY),
         .s_axi_lite_wvalid(axi_smc_M03_AXI_WVALID),
-        .s_axis_s2mm_tdata(adc_sampler_0_m_axis_TDATA[15:0]),
-        .s_axis_s2mm_tkeep({adc_sampler_0_m_axis_TKEEP[0],adc_sampler_0_m_axis_TKEEP[1]}),
+        .s_axis_s2mm_tdata(adc_sampler_0_m_axis_TDATA),
+        .s_axis_s2mm_tkeep({adc_sampler_0_m_axis_TKEEP[2],adc_sampler_0_m_axis_TKEEP[3]}),
         .s_axis_s2mm_tlast(adc_sampler_0_m_axis_TLAST),
         .s_axis_s2mm_tready(adc_sampler_0_m_axis_TREADY),
         .s_axis_s2mm_tvalid(adc_sampler_0_m_axis_TVALID));
@@ -532,6 +554,23 @@ module system
         .M04_AXI_wready(axi_smc_M04_AXI_WREADY),
         .M04_AXI_wstrb(axi_smc_M04_AXI_WSTRB),
         .M04_AXI_wvalid(axi_smc_M04_AXI_WVALID),
+        .M05_AXI_araddr(axi_smc_M05_AXI_ARADDR),
+        .M05_AXI_arready(axi_smc_M05_AXI_ARREADY),
+        .M05_AXI_arvalid(axi_smc_M05_AXI_ARVALID),
+        .M05_AXI_awaddr(axi_smc_M05_AXI_AWADDR),
+        .M05_AXI_awready(axi_smc_M05_AXI_AWREADY),
+        .M05_AXI_awvalid(axi_smc_M05_AXI_AWVALID),
+        .M05_AXI_bready(axi_smc_M05_AXI_BREADY),
+        .M05_AXI_bresp(axi_smc_M05_AXI_BRESP),
+        .M05_AXI_bvalid(axi_smc_M05_AXI_BVALID),
+        .M05_AXI_rdata(axi_smc_M05_AXI_RDATA),
+        .M05_AXI_rready(axi_smc_M05_AXI_RREADY),
+        .M05_AXI_rresp(axi_smc_M05_AXI_RRESP),
+        .M05_AXI_rvalid(axi_smc_M05_AXI_RVALID),
+        .M05_AXI_wdata(axi_smc_M05_AXI_WDATA),
+        .M05_AXI_wready(axi_smc_M05_AXI_WREADY),
+        .M05_AXI_wstrb(axi_smc_M05_AXI_WSTRB),
+        .M05_AXI_wvalid(axi_smc_M05_AXI_WVALID),
         .S00_AXI_araddr(ps_0_M_AXI_GP0_ARADDR),
         .S00_AXI_arburst(ps_0_M_AXI_GP0_ARBURST),
         .S00_AXI_arcache(ps_0_M_AXI_GP0_ARCACHE),
@@ -602,6 +641,28 @@ module system
         .S_AXI_wvalid(axi_smc_M01_AXI_WVALID),
         .s_axi_aclk(pll_0_clk_out1),
         .s_axi_aresetn(rst_0_peripheral_aresetn));
+  system_histogram_0_0 histogram_0
+       (.clk(pll_0_clk_out1),
+        .data_in(vio_0_probe_out0[4:0]),
+        .resetn(rst_0_peripheral_aresetn),
+        .s_axi_araddr(axi_smc_M05_AXI_ARADDR),
+        .s_axi_arready(axi_smc_M05_AXI_ARREADY),
+        .s_axi_arvalid(axi_smc_M05_AXI_ARVALID),
+        .s_axi_awaddr(axi_smc_M05_AXI_AWADDR),
+        .s_axi_awready(axi_smc_M05_AXI_AWREADY),
+        .s_axi_awvalid(axi_smc_M05_AXI_AWVALID),
+        .s_axi_bready(axi_smc_M05_AXI_BREADY),
+        .s_axi_bresp(axi_smc_M05_AXI_BRESP),
+        .s_axi_bvalid(axi_smc_M05_AXI_BVALID),
+        .s_axi_rdata(axi_smc_M05_AXI_RDATA),
+        .s_axi_rready(axi_smc_M05_AXI_RREADY),
+        .s_axi_rresp(axi_smc_M05_AXI_RRESP),
+        .s_axi_rvalid(axi_smc_M05_AXI_RVALID),
+        .s_axi_wdata(axi_smc_M05_AXI_WDATA),
+        .s_axi_wready(axi_smc_M05_AXI_WREADY),
+        .s_axi_wstrb(axi_smc_M05_AXI_WSTRB),
+        .s_axi_wvalid(axi_smc_M05_AXI_WVALID),
+        .wr_en(vio_0_probe_out1));
   assign ilconcat_0_dout = {ADC_DRDY};
   assign ilconstant_0_dout = 4'hF;
   assign ilconstant_1_dout = 1'h1;
@@ -612,6 +673,7 @@ module system
   assign ADC_CS = axi_quad_spi_0_ss_o[1:1];
   assign ADC_RESET = axi_gpio_0_gpio_io_o[3:3];
   assign ADC_START = axi_gpio_0_gpio_io_o[4:4];
+  assign VMON_EN = axi_gpio_0_gpio_io_o[5:5];
   system_pll_0_0 pll_0
        (.clk_in1_n(adc_clk_n_i),
         .clk_in1_p(adc_clk_p_i),
@@ -761,7 +823,7 @@ module system
         .aresetn(rst_0_peripheral_aresetn));
   system_system_ila_0_2 system_ila_0
        (.SLOT_0_AXIS_tdata(adc_sampler_0_m_axis_TDATA),
-        .SLOT_0_AXIS_tkeep({1'b1,1'b1,adc_sampler_0_m_axis_TKEEP[0],adc_sampler_0_m_axis_TKEEP[1]}),
+        .SLOT_0_AXIS_tkeep({adc_sampler_0_m_axis_TKEEP[2],adc_sampler_0_m_axis_TKEEP[3]}),
         .SLOT_0_AXIS_tlast(adc_sampler_0_m_axis_TLAST),
         .SLOT_0_AXIS_tready(adc_sampler_0_m_axis_TREADY),
         .SLOT_0_AXIS_tvalid(adc_sampler_0_m_axis_TVALID),
@@ -769,4 +831,8 @@ module system
         .probe0(rw_reg_count),
         .probe1(rw_reg_start),
         .resetn(rst_0_peripheral_aresetn));
+  system_vio_0_0 vio_0
+       (.clk(pll_0_clk_out1),
+        .probe_out0(vio_0_probe_out0),
+        .probe_out1(vio_0_probe_out1));
 endmodule

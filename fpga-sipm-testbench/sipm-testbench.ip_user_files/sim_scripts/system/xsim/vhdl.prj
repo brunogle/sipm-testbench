@@ -1,10 +1,11 @@
 vhdl xil_defaultlib  \
 "../../../bd/system/ip/system_rst_0_0/sim/system_rst_0_0.vhd" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_1/sim/bd_44e3_psr_aclk_0.vhd" \
 "../../../bd/system/ip/system_debug_bridge_0_1/bd_0/ip/ip_1/sim/bd_ddb4_bsip_0.vhd" \
-"../../../bd/system/ip/system_axi_bram_ctrl_0_0/sim/system_axi_bram_ctrl_0_0.vhd" \
+"../../../bd/system/ip/system_axi_gpio_0_1/sim/system_axi_gpio_0_1.vhd" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_1/sim/bd_8422_psr_aclk_0.vhd" \
+"../../../bd/system/ip/system_axi_quad_spi_0_0/sim/system_axi_quad_spi_0_0.vhd" \
 "../../../bd/system/ip/system_axi_dma_0_0/sim/system_axi_dma_0_0.vhd" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_1/sim/bd_919a_psr_aclk_0.vhd" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_1/sim/bd_919a_psr_aclk_0.vhd" \
 
 # Do not sort compile order
 nosort

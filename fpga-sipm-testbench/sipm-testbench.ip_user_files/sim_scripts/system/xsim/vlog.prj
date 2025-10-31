@@ -1,88 +1,108 @@
-verilog xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" \
+verilog xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/5431/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/4e08/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/537f/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/d41f/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/0de9/hdl" \
 "../../../bd/system/ip/system_pll_0_0/system_pll_0_0_clk_wiz.v" \
 "../../../bd/system/ip/system_pll_0_0/system_pll_0_0.v" \
 "../../../bd/system/ip/system_ps_0_0/sim/system_ps_0_0.v" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_0/sim/bd_44e3_one_0.v" \
-
-sv xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_2/sim/bd_44e3_arsw_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_3/sim/bd_44e3_rsw_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_4/sim/bd_44e3_awsw_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_5/sim/bd_44e3_wsw_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_6/sim/bd_44e3_bsw_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_7/sim/bd_44e3_s00mmu_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_8/sim/bd_44e3_s00tr_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_9/sim/bd_44e3_s00sic_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_10/sim/bd_44e3_s00a2s_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_11/sim/bd_44e3_sarn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_12/sim/bd_44e3_srn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_13/sim/bd_44e3_sawn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_14/sim/bd_44e3_swn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_15/sim/bd_44e3_sbn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_16/sim/bd_44e3_m00s2a_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_17/sim/bd_44e3_m00arn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_18/sim/bd_44e3_m00rn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_19/sim/bd_44e3_m00awn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_20/sim/bd_44e3_m00wn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_21/sim/bd_44e3_m00bn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_22/sim/bd_44e3_m00e_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_23/sim/bd_44e3_m01s2a_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_24/sim/bd_44e3_m01arn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_25/sim/bd_44e3_m01rn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_26/sim/bd_44e3_m01awn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_27/sim/bd_44e3_m01wn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_28/sim/bd_44e3_m01bn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_29/sim/bd_44e3_m01e_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_30/sim/bd_44e3_m02s2a_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_31/sim/bd_44e3_m02arn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_32/sim/bd_44e3_m02rn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_33/sim/bd_44e3_m02awn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_34/sim/bd_44e3_m02wn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_35/sim/bd_44e3_m02bn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_36/sim/bd_44e3_m02e_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_37/sim/bd_44e3_m03s2a_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_38/sim/bd_44e3_m03arn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_39/sim/bd_44e3_m03rn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_40/sim/bd_44e3_m03awn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_41/sim/bd_44e3_m03wn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_42/sim/bd_44e3_m03bn_0.sv" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/ip/ip_43/sim/bd_44e3_m03e_0.sv" \
-
-verilog xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" \
-"../../../bd/system/ip/system_axi_smc_0/bd_0/sim/bd_44e3.v" \
-
-sv xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" \
-"../../../bd/system/ip/system_axi_smc_0/sim/system_axi_smc_0.sv" \
-
-verilog xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" \
 "../../../bd/system/ip/system_debug_bridge_0_1/bd_0/ip/ip_0/sim/bd_ddb4_axi_jtag_0.v" \
 "../../../bd/system/ip/system_debug_bridge_0_1/bd_0/sim/bd_ddb4.v" \
 "../../../bd/system/ip/system_debug_bridge_0_1/sim/system_debug_bridge_0_1.v" \
-"../../../bd/system/ip/system_axis_dac_0_0/sim/system_axis_dac_0_0.v" \
-"../../../bd/system/ip/system_signal_generator_0_0/sim/system_signal_generator_0_0.v" \
-"../../../bd/system/ip/system_blk_mem_gen_0_0/sim/system_blk_mem_gen_0_0.v" \
 "../../../bd/system/ip/system_axis_adc_0_0/sim/system_axis_adc_0_0.v" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/sim/bd_8422.v" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_0/sim/bd_8422_one_0.v" \
+
+sv xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/5431/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/4e08/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/537f/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/d41f/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/0de9/hdl" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_2/sim/bd_8422_arinsw_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_3/sim/bd_8422_rinsw_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_4/sim/bd_8422_awinsw_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_5/sim/bd_8422_winsw_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_6/sim/bd_8422_binsw_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_7/sim/bd_8422_aroutsw_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_8/sim/bd_8422_routsw_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_9/sim/bd_8422_awoutsw_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_10/sim/bd_8422_woutsw_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_11/sim/bd_8422_boutsw_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_12/sim/bd_8422_arni_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_13/sim/bd_8422_rni_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_14/sim/bd_8422_awni_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_15/sim/bd_8422_wni_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_16/sim/bd_8422_bni_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_17/sim/bd_8422_s00mmu_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_18/sim/bd_8422_s00tr_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_19/sim/bd_8422_s00sic_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_20/sim/bd_8422_s00a2s_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_21/sim/bd_8422_sarn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_22/sim/bd_8422_srn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_23/sim/bd_8422_sawn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_24/sim/bd_8422_swn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_25/sim/bd_8422_sbn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_26/sim/bd_8422_m00s2a_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_27/sim/bd_8422_m00arn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_28/sim/bd_8422_m00rn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_29/sim/bd_8422_m00awn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_30/sim/bd_8422_m00wn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_31/sim/bd_8422_m00bn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_32/sim/bd_8422_m00e_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_33/sim/bd_8422_m01s2a_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_34/sim/bd_8422_m01arn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_35/sim/bd_8422_m01rn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_36/sim/bd_8422_m01awn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_37/sim/bd_8422_m01wn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_38/sim/bd_8422_m01bn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_39/sim/bd_8422_m01e_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_40/sim/bd_8422_m02s2a_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_41/sim/bd_8422_m02arn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_42/sim/bd_8422_m02rn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_43/sim/bd_8422_m02awn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_44/sim/bd_8422_m02wn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_45/sim/bd_8422_m02bn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_46/sim/bd_8422_m02e_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_47/sim/bd_8422_m03s2a_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_48/sim/bd_8422_m03arn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_49/sim/bd_8422_m03rn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_50/sim/bd_8422_m03awn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_51/sim/bd_8422_m03wn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_52/sim/bd_8422_m03bn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_53/sim/bd_8422_m03e_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_54/sim/bd_8422_m04s2a_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_55/sim/bd_8422_m04arn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_56/sim/bd_8422_m04rn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_57/sim/bd_8422_m04awn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_58/sim/bd_8422_m04wn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_59/sim/bd_8422_m04bn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_60/sim/bd_8422_m04e_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_61/sim/bd_8422_m05s2a_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_62/sim/bd_8422_m05arn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_63/sim/bd_8422_m05rn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_64/sim/bd_8422_m05awn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_65/sim/bd_8422_m05wn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_66/sim/bd_8422_m05bn_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/bd_0/ip/ip_67/sim/bd_8422_m05e_0.sv" \
+"../../../bd/system/ip/system_axi_smc_1/sim/system_axi_smc_1.sv" \
+
+verilog xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/5431/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/4e08/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/537f/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/d41f/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/0de9/hdl" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/sim/bd_919a.v" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_0/sim/bd_919a_one_0.v" \
+
+sv xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/5431/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/4e08/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/537f/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/d41f/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/0de9/hdl" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_2/sim/bd_919a_s00mmu_0.sv" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_3/sim/bd_919a_s00tr_0.sv" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_4/sim/bd_919a_s00sic_0.sv" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_5/sim/bd_919a_s00a2s_0.sv" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_6/sim/bd_919a_sawn_0.sv" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_7/sim/bd_919a_swn_0.sv" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_8/sim/bd_919a_sbn_0.sv" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_9/sim/bd_919a_m00s2a_0.sv" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/bd_0/ip/ip_10/sim/bd_919a_m00e_0.sv" \
+"../../../bd/system/ip/system_smartconnect_0_0_1/sim/system_smartconnect_0_0.sv" \
+
+verilog xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/5431/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/4e08/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/537f/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/d41f/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/0de9/hdl" \
 "../../../bd/system/ip/system_adc_sampler_0_0/sim/system_adc_sampler_0_0.v" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_0/sim/bd_919a_one_0.v" \
-
-sv xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_2/sim/bd_919a_s00mmu_0.sv" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_3/sim/bd_919a_s00tr_0.sv" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_4/sim/bd_919a_s00sic_0.sv" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_5/sim/bd_919a_s00a2s_0.sv" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_6/sim/bd_919a_sawn_0.sv" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_7/sim/bd_919a_swn_0.sv" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_8/sim/bd_919a_sbn_0.sv" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_9/sim/bd_919a_m00s2a_0.sv" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/ip/ip_10/sim/bd_919a_m00e_0.sv" \
-
-verilog xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" \
-"../../../bd/system/ip/system_smartconnect_0_0/bd_0/sim/bd_919a.v" \
-
-sv xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" \
-"../../../bd/system/ip/system_smartconnect_0_0/sim/system_smartconnect_0_0.sv" \
-
-verilog xil_defaultlib -i "../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef" --include "/opt/Xilinx/2025.1/Vivado/data/xilinx_vip/include" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a9be" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/6cfa/hdl" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/f0b6/hdl/verilog" --include "../../../../sipm-testbench.gen/sources_1/bd/system/ipshared/a8e4/hdl/verilog" \
+"../../../bd/system/ip/system_system_ila_0_2/bd_0/sim/bd_1439.v" \
+"../../../bd/system/ip/system_system_ila_0_2/bd_0/ip/ip_0/sim/bd_1439_ila_lib_0.v" \
+"../../../bd/system/ip/system_system_ila_0_2/bd_0/ip/ip_1/bd_1439_g_inst_0_gigantic_mux.v" \
+"../../../bd/system/ip/system_system_ila_0_2/bd_0/ip/ip_1/sim/bd_1439_g_inst_0.v" \
+"../../../bd/system/ip/system_system_ila_0_2/sim/system_system_ila_0_2.v" \
+"../../../bd/system/ip/system_histogram_0_0/sim/system_histogram_0_0.v" \
+"../../../bd/system/ip/system_vio_0_0/sim/system_vio_0_0.v" \
 "../../../bd/system/sim/system.v" \
 
 verilog xil_defaultlib "glbl.v"

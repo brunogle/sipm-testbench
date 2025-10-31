@@ -2,8 +2,8 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-//Date        : Sat Oct 25 23:42:37 2025
-//Host        : bruno-desktop-fedora running 64-bit Fedora Linux 42 (Workstation Edition)
+//Date        : Thu Oct 30 22:46:36 2025
+//Host        : bruno-latitude-fedora running 64-bit Fedora Linux 42 (KDE Plasma Desktop Edition)
 //Command     : generate_target system_wrapper.bd
 //Design      : system_wrapper
 //Purpose     : IP block netlist
@@ -44,6 +44,7 @@ module system_wrapper
     HV_ON_LED,
     SCALE,
     SCLK,
+    VMON_EN,
     adc_clk_n_i,
     adc_clk_p_i,
     adc_csn_o,
@@ -91,6 +92,7 @@ module system_wrapper
   output [0:0]HV_ON_LED;
   output [0:0]SCALE;
   output SCLK;
+  output [0:0]VMON_EN;
   input adc_clk_n_i;
   input adc_clk_p_i;
   output adc_csn_o;
@@ -139,6 +141,7 @@ module system_wrapper
   wire [0:0]HV_ON_LED;
   wire [0:0]SCALE;
   wire SCLK;
+  wire [0:0]VMON_EN;
   wire adc_clk_n_i;
   wire adc_clk_p_i;
   wire adc_csn_o;
@@ -188,6 +191,7 @@ module system_wrapper
         .HV_ON_LED(HV_ON_LED),
         .SCALE(SCALE),
         .SCLK(SCLK),
+        .VMON_EN(VMON_EN),
         .adc_clk_n_i(adc_clk_n_i),
         .adc_clk_p_i(adc_clk_p_i),
         .adc_csn_o(adc_csn_o),

@@ -76,7 +76,6 @@ module system_adc_sampler_0_0 (
   s_axi_rready,
   rw_reg_start,
   rw_reg_count,
-  sample,
   s_axis_tready,
   s_axis_tdata,
   s_axis_tvalid,
@@ -134,27 +133,26 @@ output wire s_axi_rvalid;
 input wire s_axi_rready;
 output wire [31 : 0] rw_reg_start;
 output wire [31 : 0] rw_reg_count;
-input wire sample;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_axis TREADY" *)
 (* X_INTERFACE_MODE = "slave" *)
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME s_axis, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 125000000, PHASE 0.0, CLK_DOMAIN system_pll_0_0_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME s_axis, TDATA_NUM_BYTES 2, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 125000000, PHASE 0.0, CLK_DOMAIN system_pll_0_0_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
 output wire s_axis_tready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_axis TDATA" *)
-input wire [31 : 0] s_axis_tdata;
+input wire [15 : 0] s_axis_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 s_axis TVALID" *)
 input wire s_axis_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TREADY" *)
 (* X_INTERFACE_MODE = "master" *)
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME m_axis, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.0, CLK_DOMAIN system_pll_0_0_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME m_axis, TDATA_NUM_BYTES 2, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.0, CLK_DOMAIN system_pll_0_0_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
 input wire m_axis_tready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TDATA" *)
-output wire [31 : 0] m_axis_tdata;
+output wire [15 : 0] m_axis_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TVALID" *)
 output wire m_axis_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TLAST" *)
 output wire m_axis_tlast;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TKEEP" *)
-output wire [0 : 1] m_axis_tkeep;
+output wire [0 : 3] m_axis_tkeep;
 
   adc_sampler inst (
     .clk(clk),
@@ -178,7 +176,6 @@ output wire [0 : 1] m_axis_tkeep;
     .s_axi_rready(s_axi_rready),
     .rw_reg_start(rw_reg_start),
     .rw_reg_count(rw_reg_count),
-    .sample(sample),
     .s_axis_tready(s_axis_tready),
     .s_axis_tdata(s_axis_tdata),
     .s_axis_tvalid(s_axis_tvalid),

@@ -237,6 +237,10 @@ set_property SLEW FAST [get_ports ADC_START]
 set_property DRIVE 8 [get_ports ADC_START]
 set_property PACKAGE_PIN J18 [get_ports ADC_START]
 
+set_property IOSTANDARD LVCMOS33 [get_ports VMON_EN]
+set_property SLEW FAST [get_ports VMON_EN]
+set_property DRIVE 8 [get_ports VMON_EN]
+set_property PACKAGE_PIN L16 [get_ports VMON_EN]
 
 ### SATA connector
 
