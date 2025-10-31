@@ -3064,7 +3064,7 @@
           },
           "data_in": {
             "direction": "I",
-            "left": "4",
+            "left": "13",
             "right": "0"
           },
           "wr_en": {

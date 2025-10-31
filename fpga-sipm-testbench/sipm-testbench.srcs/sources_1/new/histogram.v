@@ -1,27 +1,41 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/29/2025 10:51:05 PM
-// Design Name: 
-// Module Name: histogram
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+
+module rams_tdp_rf_rf #(parameter ADDR_WIDTH = 13)(clka,clkb,ena,enb,wea,web,addra,addrb,dia,dib,doa,dob);
+localparam DEPTH = 1 << ADDR_WIDTH;
+
+input clka,clkb,ena,enb,wea,web;
+input [ADDR_WIDTH:0] addra,addrb;
+input [31:0] dia,dib;
+output [31:0] doa,dob;
+reg [31:0] ram [DEPTH:0];
+reg [31:0] doa,dob;
+
+always @(posedge clka)
+begin
+if (ena)
+begin
+if (wea)
+ram[addra] <= dia;
+doa <= ram[addra];
+end
+end
+
+always @(posedge clkb)
+begin
+if (enb)
+begin
+if (web)
+ram[addrb] <= dib;
+dob <= ram[addrb];
+end
+end
+
+endmodule
+
 
 
 module histogram #(
-    parameter integer DATA_WIDTH = 4,
+    parameter integer DATA_WIDTH = 13,
     parameter integer BINS = 1 << DATA_WIDTH
 
 
@@ -48,7 +62,7 @@ module histogram #(
     input wire          s_axi_rready,
     
     input wire [DATA_WIDTH:0]   data_in,
-    input wire          wr_en
+    input wire                  wr_en
     );
 
 
@@ -62,8 +76,7 @@ module histogram #(
 
     
     
-    reg unsigned [31:0] channels [0:(BINS-1)];
-    reg unsigned [63:0] counter;
+    reg [63:0] counter;
     integer i;
 
     assign s_axi_awready = s_axi_awready_reg;
@@ -85,7 +98,10 @@ module histogram #(
             s_axi_awready_reg <= 1'b0;
         end
     end
-
+    
+    wire [DATA_WIDTH-1:0] addrb;
+    assign addrb = s_axi_araddr[(DATA_WIDTH-1):0] >> 2;
+    
     // Write data handshake
     always @(posedge clk) begin
         if (!resetn) begin
@@ -110,44 +126,109 @@ module histogram #(
         end else begin
             wready_reg <= 1'b0;
         end
+        
+        if(reset_counter == BINS-1) begin
+            rw_ctrl[1] <= 1'b0;
+        end
     end
-    wire channel_read = s_axi_araddr[(DATA_WIDTH-1):0];
+    wire [(DATA_WIDTH-1):0] channel_read = s_axi_araddr[(DATA_WIDTH-1):0] >> 2;
     // Read address handshake
+    wire [31:0] doutb;
+    reg loading_data;
+    
     always @(posedge clk) begin
         if (!resetn) begin
             arready_reg <= 1'b0;
             rvalid_reg <= 1'b0;
+            loading_data <= 1'b0;
         end else if (s_axi_arvalid && !arready_reg) begin
-            arready_reg <= 1'b1;
+            
             if (s_axi_araddr[16] == 1'd0) begin
                 case (s_axi_araddr[5:2])
                     4'd00000: rdata_reg <= rw_ctrl;
                     4'd00001: rdata_reg <= counter;
                     default: rdata_reg <= 32'hdeadbeef; // Default value
-                endcase    
+                endcase
+                arready_reg <= 1'b1;
+                rvalid_reg <= 1'b1;    
+            end else if(!loading_data) begin
+                rvalid_reg <= 1'b0;
+                loading_data <= 1'b1;
             end else begin
-                rdata_reg <= channels[channel_read];
-            end       
-            rvalid_reg <= 1'b1;
+                rdata_reg <= doutb;
+                loading_data <= 1'b0;
+                rvalid_reg <= 1'b1;
+                arready_reg <= 1'b1;
+            end
+            
         end else if (s_axi_rready && rvalid_reg) begin
             rvalid_reg <= 1'b0;
         end else begin
             arready_reg <= 1'b0;
         end
     end
-
+    
+        reg we;
+        reg ena;
+        reg [DATA_WIDTH-1:0] addra;
+        reg [31:0] di;
+        wire [31:0] dout;
+        
+        reg [DATA_WIDTH-1:0] reset_counter;
+                
+        reg [1:0] state = 0;
+                
+        // Instantiate the RAM
+        rams_tdp_rf_rf #(
+            .ADDR_WIDTH(DATA_WIDTH)
+        )
+        ram_hist (
+            .clka(clk),
+            .clkb(clk),
+            .ena(ena),
+            .enb(ena),     
+            .wea(we),     
+            .web(1'b0),                                    
+            .addra(addra),
+            .addrb(addrb),
+            .dia(di),
+            .dib(32'b0),
+            .doa(dout),
+            .dob(doutb)
+        );
     
     always @(posedge clk) begin
         
-        
-        if(rw_ctrl & 32'b10 || !resetn) begin
-            for(i = 0; i < BINS; i = i + 1) begin
-                channels[i] <= 0;
+        if(!resetn) begin
+            reset_counter <= 0;
+            we <= 0;
+            ena <= 1;
+            di <= 0;
+            addra <= 0;
+        end else if(rw_ctrl & 32'b10) begin
+            we <= 1'b1;
+            di <= 1'b0;
+            if(reset_counter == BINS-1) begin
+                reset_counter <= 0;
+            end else begin
+                reset_counter <= reset_counter + 1;
             end
-            counter <= 0;
-        end else if (wr_en && (rw_ctrl & 32'b10)) begin
-            channels[data_in] <= channels[data_in] + 1;
-            counter <= counter + 1;
+        end else if(wr_en && (rw_ctrl & 32'b1) && (state==0))  begin
+            addra <= data_in;
+            state <= 1;
+        end else if(state==1)  begin
+            state <= 2;
+        end else if(state==2) begin
+            we <= 1;
+            di <= dout + 1;  
+            state <= 3;          
+        end else if(state==3)  begin
+            we <= 0;
+            if(wr_en == 0)begin
+                state <= 0;
+            end
+        end else begin
+            we <= 0;
         end
     end
 

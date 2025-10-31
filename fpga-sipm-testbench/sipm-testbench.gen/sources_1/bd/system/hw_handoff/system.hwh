@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Oct 30 22:46:42 2025" VIVADOVERSION="2025.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Oct 31 16:40:58 2025" VIVADOVERSION="2025.1">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="system" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -4568,8 +4568,8 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="s_axi" NAME="reg0" RANGE="0x100000000" USAGE="register"/>
       </ADDRESSBLOCKS>
       <PARAMETERS>
-        <PARAMETER NAME="BINS" VALUE="16"/>
-        <PARAMETER NAME="DATA_WIDTH" VALUE="4"/>
+        <PARAMETER NAME="BINS" VALUE="8192"/>
+        <PARAMETER NAME="DATA_WIDTH" VALUE="13"/>
         <PARAMETER NAME="Component_Name" VALUE="system_histogram_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_BASEADDR" VALUE="0x50000000"/>
@@ -4581,7 +4581,7 @@
             <CONNECTION INSTANCE="pll_0" PORT="clk_out1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="4" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="vio_0_probe_out0">
+        <PORT DIR="I" LEFT="13" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="vio_0_probe_out0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vio_0" PORT="probe_out0"/>
           </CONNECTIONS>

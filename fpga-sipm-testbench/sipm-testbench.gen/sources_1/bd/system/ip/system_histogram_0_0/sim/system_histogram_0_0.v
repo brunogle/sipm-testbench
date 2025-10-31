@@ -123,12 +123,12 @@ output wire [1 : 0] s_axi_rresp;
 output wire s_axi_rvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi RREADY" *)
 input wire s_axi_rready;
-input wire [4 : 0] data_in;
+input wire [13 : 0] data_in;
 input wire wr_en;
 
   histogram #(
-    .DATA_WIDTH(4),
-    .BINS(16)
+    .DATA_WIDTH(13),
+    .BINS(8192)
   ) inst (
     .clk(clk),
     .resetn(resetn),
