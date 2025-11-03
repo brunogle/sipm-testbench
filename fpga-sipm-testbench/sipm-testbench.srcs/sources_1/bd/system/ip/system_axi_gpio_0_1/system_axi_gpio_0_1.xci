@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "system_axi_gpio_0_1",
-    "cell_name": "axi_gpio_0",
+    "cell_name": "gpio/axi_gpio_0",
     "component_reference": "xilinx.com:ip:axi_gpio:2.0",
     "ip_revision": "37",
     "gen_directory": "../../../../../../sipm-testbench.gen/sources_1/bd/system/ip/system_axi_gpio_0_1",

@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "system_smartconnect_0_0",
-    "cell_name": "smartconnect_0",
+    "cell_name": "dma/smartconnect_0",
     "component_reference": "xilinx.com:ip:smartconnect:1.0",
     "ip_revision": "27",
     "gen_directory": "../../../../../../sipm-testbench.gen/sources_1/bd/system/ip/system_smartconnect_0_0_1",

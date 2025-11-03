@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "system_rst_0_0",
-    "cell_name": "rst_0",
+    "cell_name": "ps_aux/rst_0",
     "component_reference": "xilinx.com:ip:proc_sys_reset:5.0",
     "ip_revision": "17",
     "gen_directory": "../../../../../../sipm-testbench.gen/sources_1/bd/system/ip/system_rst_0_0",

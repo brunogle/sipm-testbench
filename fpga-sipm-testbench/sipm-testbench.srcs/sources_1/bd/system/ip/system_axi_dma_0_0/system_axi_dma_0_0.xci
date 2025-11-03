@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "system_axi_dma_0_0",
-    "cell_name": "axi_dma_0",
+    "cell_name": "dma/axi_dma_0",
     "component_reference": "xilinx.com:ip:axi_dma:7.1",
     "ip_revision": "36",
     "gen_directory": "../../../../../../sipm-testbench.gen/sources_1/bd/system/ip/system_axi_dma_0_0",

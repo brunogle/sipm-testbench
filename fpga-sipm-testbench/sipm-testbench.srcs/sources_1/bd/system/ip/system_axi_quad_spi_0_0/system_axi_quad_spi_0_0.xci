@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "system_axi_quad_spi_0_0",
-    "cell_name": "axi_quad_spi_0",
+    "cell_name": "spi/axi_quad_spi_0",
     "component_reference": "xilinx.com:ip:axi_quad_spi:3.2",
     "ip_revision": "34",
     "gen_directory": "../../../../../../sipm-testbench.gen/sources_1/bd/system/ip/system_axi_quad_spi_0_0",

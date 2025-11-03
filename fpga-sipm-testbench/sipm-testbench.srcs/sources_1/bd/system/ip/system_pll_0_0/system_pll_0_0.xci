@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "system_pll_0_0",
-    "cell_name": "pll_0",
+    "cell_name": "ps_aux/pll_0",
     "component_reference": "xilinx.com:ip:clk_wiz:6.0",
     "ip_revision": "16",
     "gen_directory": "../../../../../../sipm-testbench.gen/sources_1/bd/system/ip/system_pll_0_0",
