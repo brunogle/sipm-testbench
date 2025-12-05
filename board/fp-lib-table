@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "red_pitaya_shield")(type "KiCad")(uri "${KIPRJMOD}/library/sipm_testbench.pretty")(options "")(descr ""))
+)

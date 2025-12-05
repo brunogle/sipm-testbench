@@ -1,0 +1,119 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.717936",
+   "Default View_TopLeft":"-964,297",
+   "ExpandedHierarchyInLayout":"",
+   "HierExpandStatus_comment_0":"false",
+   "PinnedBlocks":"/ps_0|/axi_smc|/dma|/adc_sampler_0|/axis_adc_0|/pulse_detection_0|/histogram_0|",
+   "comment_0":"d0: BOOST_SDN/HV_ON_LED
+d1: DAC_CLR
+d2: SCALE
+d3: ADC_RESET
+d4: ADC_START
+d5: VMON_EN",
+   "commentid":"comment_0|",
+   "fillcolor_comment_0":"",
+   "font_comment_0":"10",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0 TLS
+#  -string -flagsOSRD
+preplace port Vp_Vn -pg 1 -lvl 0 -x -1610 -y -960 -defaultsOSRD
+preplace port Vaux0 -pg 1 -lvl 0 -x -1610 -y -1080 -defaultsOSRD
+preplace port Vaux1 -pg 1 -lvl 0 -x -1610 -y -1050 -defaultsOSRD
+preplace port Vaux9 -pg 1 -lvl 0 -x -1610 -y -990 -defaultsOSRD
+preplace port Vaux8 -pg 1 -lvl 0 -x -1610 -y -1020 -defaultsOSRD
+preplace port DDR -pg 1 -lvl 8 -x 1020 -y 390 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 8 -x 1020 -y 420 -defaultsOSRD
+preplace port port-id_adc_clk_p_i -pg 1 -lvl 0 -x -1610 -y 620 -defaultsOSRD
+preplace port port-id_adc_clk_n_i -pg 1 -lvl 0 -x -1610 -y 650 -defaultsOSRD
+preplace port port-id_adc_enc_p_o -pg 1 -lvl 8 -x 1020 -y -930 -defaultsOSRD
+preplace port port-id_adc_enc_n_o -pg 1 -lvl 8 -x 1020 -y -960 -defaultsOSRD
+preplace port port-id_adc_csn_o -pg 1 -lvl 8 -x 1020 -y -990 -defaultsOSRD
+preplace port port-id_dac_clk_o -pg 1 -lvl 8 -x 1020 -y -900 -defaultsOSRD
+preplace port port-id_dac_rst_o -pg 1 -lvl 8 -x 1020 -y -870 -defaultsOSRD
+preplace port port-id_dac_sel_o -pg 1 -lvl 8 -x 1020 -y -840 -defaultsOSRD
+preplace port port-id_dac_wrt_o -pg 1 -lvl 8 -x 1020 -y -810 -defaultsOSRD
+preplace port port-id_DIN -pg 1 -lvl 8 -x 1020 -y 570 -defaultsOSRD
+preplace port port-id_SCLK -pg 1 -lvl 8 -x 1020 -y 600 -defaultsOSRD
+preplace port port-id_DOUT -pg 1 -lvl 8 -x 1020 -y 450 -defaultsOSRD -right
+preplace port port-id_ADC_DRDY -pg 1 -lvl 8 -x 1020 -y 480 -defaultsOSRD -right
+preplace portBus adc_dat_a_i -pg 1 -lvl 0 -x -1610 -y 750 -defaultsOSRD
+preplace portBus adc_dat_b_i -pg 1 -lvl 0 -x -1610 -y 780 -defaultsOSRD
+preplace portBus dac_dat_o -pg 1 -lvl 8 -x 1020 -y -1080 -defaultsOSRD
+preplace portBus dac_pwm_o -pg 1 -lvl 8 -x 1020 -y -1050 -defaultsOSRD
+preplace portBus led_o -pg 1 -lvl 8 -x 1020 -y -1020 -defaultsOSRD
+preplace portBus DAC_CLR -pg 1 -lvl 8 -x 1020 -y 640 -defaultsOSRD
+preplace portBus BOOST_SHDN -pg 1 -lvl 8 -x 1020 -y 730 -defaultsOSRD
+preplace portBus DAC_SYNC -pg 1 -lvl 8 -x 1020 -y 540 -defaultsOSRD
+preplace portBus SCALE -pg 1 -lvl 8 -x 1020 -y 790 -defaultsOSRD
+preplace portBus HV_ON_LED -pg 1 -lvl 8 -x 1020 -y 760 -defaultsOSRD
+preplace portBus ADC_CS -pg 1 -lvl 8 -x 1020 -y 510 -defaultsOSRD
+preplace portBus ADC_RESET -pg 1 -lvl 8 -x 1020 -y 670 -defaultsOSRD
+preplace portBus ADC_START -pg 1 -lvl 8 -x 1020 -y 700 -defaultsOSRD
+preplace portBus VMON_EN -pg 1 -lvl 8 -x 1020 -y 820 -defaultsOSRD
+preplace inst ps_0 -pg 1 -lvl 5 -x -10 -y 670 -defaultsOSRD
+preplace inst debug_bridge_0 -pg 1 -lvl 7 -x 830 -y 870 -defaultsOSRD
+preplace inst axis_adc_0 -pg 1 -lvl 1 -x -1430 -y 780 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 6 -x 470 -y 690 -defaultsOSRD
+preplace inst adc_sampler_0 -pg 1 -lvl 3 -x -780 -y 630 -defaultsOSRD
+preplace inst histogram_0 -pg 1 -lvl 4 -x -450 -y 870 -defaultsOSRD
+preplace inst gpio -pg 1 -lvl 7 -x 830 -y 710 -defaultsOSRD
+preplace inst spi -pg 1 -lvl 7 -x 830 -y 540 -defaultsOSRD
+preplace inst dma -pg 1 -lvl 4 -x -450 -y 640 -defaultsOSRD
+preplace inst ps_aux -pg 1 -lvl 1 -x -1430 -y 640 -defaultsOSRD
+preplace inst pulse_detection_0 -pg 1 -lvl 3 -x -780 -y 790 -defaultsOSRD
+preplace inst axis_broadcaster_0 -pg 1 -lvl 2 -x -1110 -y 760 -defaultsOSRD
+preplace netloc ADC_DRDY_1 1 6 2 680J 450 980J
+preplace netloc DOUT_1 1 6 2 670 440 1000J
+preplace netloc adc_clk_n_i_1 1 0 1 NJ 650
+preplace netloc adc_clk_p_i_1 1 0 1 -1580J 620n
+preplace netloc adc_dat_a_i_1 1 0 1 -1590J 750n
+preplace netloc adc_dat_b_i_1 1 0 1 NJ 780
+preplace netloc axi_quad_spi_0_io0_o 1 7 1 1000 550n
+preplace netloc axi_quad_spi_0_sck_o 1 7 1 980 570n
+preplace netloc ilconstant_0_dout 1 4 1 -240 650n
+preplace netloc ilslice_0_Dout 1 7 1 1000 530n
+preplace netloc ilslice_1_Dout 1 7 1 1000 720n
+preplace netloc ilslice_2_Dout 1 7 1 990J 740n
+preplace netloc ilslice_3_Dout 1 7 1 1000J 640n
+preplace netloc ilslice_4_Dout 1 7 1 N 510
+preplace netloc ilslice_5_Dout 1 7 1 980J 670n
+preplace netloc ilslice_6_Dout 1 7 1 NJ 700
+preplace netloc ilslice_7_Dout 1 7 1 980J 760n
+preplace netloc pll_0_clk_out1 1 0 7 -1580 700 -1260 630 -940 540 -610 720 -240 770 330 580 650
+preplace netloc pulse_detection_0_peak_detected 1 3 1 -630 800n
+preplace netloc pulse_detection_0_pulse_amplitude 1 3 1 -620 780n
+preplace netloc rst_0_peripheral_aresetn 1 1 6 -1280 650 -960 530 -600 770 -320 780 320 570 660
+preplace netloc adc_sampler_0_m_axis 1 3 1 N 630
+preplace netloc axi_smc_M00_AXI 1 6 1 640 510n
+preplace netloc axi_smc_M01_AXI 1 6 1 640J 660n
+preplace netloc axi_smc_M02_AXI 1 6 1 N 680
+preplace netloc axi_smc_M03_AXI 1 3 4 -590 540 NJ 540 N 540 620
+preplace netloc axi_smc_M04_AXI 1 2 5 -930 520 NJ 520 NJ 520 N 520 630
+preplace netloc axi_smc_M05_AXI 1 3 4 -580 550 NJ 550 N 550 610
+preplace netloc axis_adc_0_M01_AXIS 1 1 1 -1270 740n
+preplace netloc axis_broadcaster_0_M00_AXIS 1 2 1 -950 600n
+preplace netloc axis_broadcaster_0_M01_AXIS 1 2 1 N 770
+preplace netloc ps_0_DDR 1 5 3 220 390 NJ 390 NJ
+preplace netloc ps_0_FIXED_IO 1 5 3 230 420 NJ 420 NJ
+preplace netloc ps_0_M_AXI_GP0 1 5 1 N 670
+preplace netloc smartconnect_0_M00_AXI 1 4 1 N 630
+preplace cgraphic comment_0 place bot 433 -586 textcolor 4 linecolor 3 linewidth 2
+levelinfo -pg 1 -1610 -1430 -1110 -780 -450 -10 470 830 1020
+pagesize -pg 1 -db -bbox -sgen -1780 -1100 2510 1430
+",
+   "linecolor_comment_0":"",
+   "textcolor_comment_0":""
+}
+{
+   """"""""""""""""da_axi4_cnt"""""""""""""""":"25",
+   """"""""""""""""da_board_cnt"""""""""""""""":"1",
+   """"""""""""""""da_clkrst_cnt"""""""""""""""":"2",
+   """""""""""""""da_axi4_cnt""""""""""""""":"3",
+   """"""""""""da_axi4_cnt"""""""""""":"1",
+   """""""""da_axi4_cnt""""""""":"1",
+   """"da_axi4_cnt"""":"1",
+   ""da_clkrst_cnt"":"1"
+}
+{
+   "/comment_0":"comment_0"
+}

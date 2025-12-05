@@ -1,0 +1,147 @@
+(footprint "ASB02505SHA"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 10 -14 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "a668a6bd-1c2b-4928-8445-666617cfe994")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "ASB02505SHA"
+		(at -3 -16 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "95866976-dffa-4948-9440-a7c4b7db8293")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3e59a8c0-9eb2-4104-bf53-2f81782beab9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1cddc46e-578d-43b7-999d-cce032347e99")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_rect
+		(start -12.9 -13)
+		(end 13.1 13)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "fd3c568f-46de-4c1b-95b9-142ab9adc30c")
+	)
+	(fp_circle
+		(center -10 -10)
+		(end -8.5 -10)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "1d402926-2182-43d8-953e-8b435fc3e547")
+	)
+	(fp_circle
+		(center -10 10)
+		(end -8.5 10)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "b120e572-3f0c-424a-b507-c0969cdb596d")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 12 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "eeb53d29-3cbb-4c68-a678-bc30d62bcf7b")
+	)
+	(fp_circle
+		(center 10 -10)
+		(end 11.5 -10)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "a734a862-5c07-4219-9022-8f7840d05153")
+	)
+	(fp_circle
+		(center 10 10)
+		(end 11.5 10)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "d28af7d0-6f80-44a6-9c48-77cc11a94bb6")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -3 -14.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "74aedc94-61b0-4c52-bbb3-173aeee984dc")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(embedded_fonts no)
+	(model "/home/bruno/Downloads/ASB02505SHA-AY6B.stp"
+		(offset
+			(xyz 0 0 10)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 180 -0)
+		)
+	)
+)

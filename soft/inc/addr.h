@@ -1,0 +1,21 @@
+#ifndef ADDR_H
+#define ADDR_H
+
+
+#define GPIO0_ADDR 0x41200000
+#define GPIO0_SIZE 0x10000
+
+#define SPI_ADDR   0x41E00000
+#define SPI_SIZE   0x10000
+
+#define DMA_CFG_ADDR 0x40400000
+#define DMA_CFG_SIZE 0x10000
+
+#define ADC_SAMPLER_ADDR 0x60000000
+#define ADC_SAMPLER_SIZE 0x10000
+
+#define HISTOGRAM_ADDR 0x50000000
+#define HISTOGRAM_SIZE 0x20000
+
+
+#endif
